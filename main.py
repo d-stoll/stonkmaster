@@ -12,9 +12,8 @@ async def _price(ctx, arg):
         current = ticker.info['regularMarketPrice']
         previous = ticker.info['previousClose']
         change = ((current - previous) / previous) * 100
-        sign = "+" if change >= 0 else ""
         msg = (f"The market price of **{ticker.info['longName']} ({ticker.info['symbol']})** is "
-               f"**{round(current, 2)}$** ({sign}{round(change, 2)}%)"
+               f"**{round(current, 2)}$** ({'{0:+}'.format(round(change, 2))}%)"
                "  <:stonks:785565572300800050>")
         await ctx.send(msg)
     except:
