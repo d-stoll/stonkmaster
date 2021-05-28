@@ -31,7 +31,7 @@ async def _shorts(ctx, arg):
         shares_short = ticker.info['sharesShort']
         short_percent_of_float = ticker.info['shortPercentOfFloat'] * 100
         msg = (f"Currently **{'{:,}'.format(shares_short)} shares** of **{long_name} ({symbol})** are shorted. "
-               f"This corresponds to **{round(short_percent_of_float, 2)}%** of shares available for investors to trade. Real SI may be much higher. Hedgies R Fuck.")
+               f"This corresponds to **{round(short_percent_of_float, 2)}%** of shares available. Real SI may be much higher. Hedgies are fucked.")
         await ctx.send(msg)
     except:
         await ctx.send(f"{arg.upper()} gibts ned oida! <:ThomasPassAuf:788838985878994964>")
