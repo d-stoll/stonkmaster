@@ -18,6 +18,7 @@ async def _price(ctx, arg):
         msg = (f"The market price of **{long_name} ({symbol})** is **{round(current, 2)}$** "
                f"({'{0:+.2f}'.format(change)}%)  {emoji}")
         await ctx.send(msg)
+        await ctx.send("!play gme song")
     except:
         await ctx.send(f"{arg.upper()} gibts ned oida! <:ThomasPassAuf:788838985878994964>")
 
