@@ -38,7 +38,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
-        script: sudo systemctl restart the-stonk-master
+        script: sudo /bin/systemctl restart the-stonk-master
         
 
 
