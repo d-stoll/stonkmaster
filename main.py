@@ -22,4 +22,19 @@ async def _price(ctx, arg):
         await ctx.send(f"{arg.upper()} gibts ned oida! <:ThomasPassAuf:788838985878994964>")
 
 
+@bot.command(name='shorts')
+async def _shorts(ctx, arg):
+    try:
+        ticker = yf.Ticker(arg)
+        long_name = ticker.info['longName']
+        symbol = ticker.info['symbol']
+        shares_short = ticker.info['sharesShort']
+        short_percent_of_float = ticker.info['shortPercentOfFloat'] * 100
+        msg = (f"Currently **{'{:,}'.format(shares_short)} shares** of **{long_name} ({symbol})** are shorted. "
+               f"This corresponds to **{round(short_percent_of_float, 2)}%** of shares available for investors to trade.")
+        await ctx.send(msg)
+    except:
+        await ctx.send(f"{arg.upper()} gibts ned oida! <:ThomasPassAuf:788838985878994964>")
+
+
 bot.run(os.environ['DISCORD_TOKEN'])
