@@ -18,7 +18,7 @@ async def _price(ctx, arg):
                "  <:stonks:785565572300800050>")
         await ctx.send(msg)
     except:
-        await ctx.send(f"{arg.upper()} gibts ned oida?! <:ThomasPassAuf:788838985878994964>")
+        await ctx.send(f"{arg.upper()} gibts ned oida! <:ThomasPassAuf:788838985878994964>")
 
 
 bot.run(os.environ['DISCORD_TOKEN'])
