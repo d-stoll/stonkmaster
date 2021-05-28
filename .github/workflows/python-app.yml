@@ -24,7 +24,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Synchronize with server
+    - name: Synchronize files with server
       uses: appleboy/scp-action@v0.1.1
       with:
         host: ${{ secrets.HOST }}
@@ -32,4 +32,13 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         source: "main.py"
         target: "/opt/the-stonk-master/"
+    - name: Restart systemd service on server
+      uses: appleboy/ssh-action@v0.1.4
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        script: sudo systemctl restart the-stonk-master
+        
+
 
