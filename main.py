@@ -22,3 +22,5 @@ async def _price(ctx, arg):
 
 
 bot.run(os.environ['DISCORD_TOKEN'])
+
+# test
