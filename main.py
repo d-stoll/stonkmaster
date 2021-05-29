@@ -8,7 +8,7 @@ import discord
 import datetime, pytz, holidays
 
 
-def _is_market_closed(now=None):
+def _is_market_closed(now=None):  # credits @Reddit u/numbuh-0
     tz = pytz.timezone('US/Eastern')
     us_holidays = holidays.US()
     if not now:
@@ -18,7 +18,7 @@ def _is_market_closed(now=None):
     # If a holiday
     if now.strftime('%Y-%m-%d') in us_holidays:
         return True
-    # If before 0930 or after 1600
+    # If before 09:30 or after 16:00
     if (now.time() < openTime) or (now.time() > closeTime):
         return True
     # If it's a weekend
