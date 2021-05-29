@@ -13,14 +13,20 @@ bot = commands.Bot(command_prefix='$')
 async def _price(ctx, arg):
     try:
         ticker = yf.Ticker(arg)
-        current = ticker.info['regularMarketPrice']
-        previous = ticker.info['previousClose']
-        long_name = ticker.info['longName']
-        symbol = ticker.info['symbol']
+        info = ticker.info
+        current = info['regularMarketPrice']
+        previous = info['previousClose']
+        symbol = info['symbol']
         change = ((current - previous) / previous) * 100
         emoji = "<:stonks:785565572300800050>" if change >= 0 else "<:notstonks:847892457138946128>"
-        msg = (f"The market price of **{long_name} ({symbol})** is **{round(current, 2)}$** "
-               f"({'{0:+.2f}'.format(change)}%)  {emoji}")
+
+        if 'longName' in info:
+            msg = (f"The market price of **{info['longName']} ({symbol})** is **{round(current, 2)}$** "
+                   f"({'{0:+.2f}'.format(change)}%)  {emoji}")
+        else:
+            msg = (f"The market price of **{symbol}** is **{round(current, 2)}$** "
+                   f"({'{0:+.2f}'.format(change)}%)  {emoji}")
+
         await ctx.send(msg)
     except:
         await ctx.send(f"{arg.upper()} gibts ned oida! <:ThomasPassAuf:788838985878994964>")
@@ -40,6 +46,7 @@ async def _shorts(ctx, arg):
         await ctx.send("Real SI may be much higher -> Hedgies are fucked.")
     except:
         await ctx.send(f"{arg.upper()} gibts ned oida! <:ThomasPassAuf:788838985878994964>")
+
 
 @bot.command(name='chart')
 async def _shorts(ctx, arg):
