@@ -67,7 +67,7 @@ async def _shorts(ctx, arg):
 
 
 @bot.command(name='chart')
-async def _shorts(ctx, arg):
+async def _chart(ctx, arg):
     try:
         start = dt.datetime(2021, 1, 1)
         end = dt.datetime.now()
