@@ -8,7 +8,7 @@ import discord
 import datetime, pytz, holidays
 
 
-def _isMarketClosed(now=None):
+def _is_market_closed(now=None):
     tz = pytz.timezone('US/Eastern')
     us_holidays = holidays.US()
     if not now:
@@ -51,9 +51,9 @@ async def _price(ctx, arg):
 
         await ctx.send(msg)
 
-        if _isMarketClosed():
+        if _is_market_closed():
             await ctx.send("Market is currently **closed**")
-        if symbol == 'GME':
+        elif symbol == 'GME':
             await ctx.send("Wennst ned woasd, wannst GME vakaffa wuisd, kosd de do orientiern: <https://gmefloor.com/>")
     except:
         await ctx.send(f"{arg.upper()} gibts ned oida! <:ThomasPassAuf:788838985878994964>")
