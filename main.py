@@ -60,6 +60,7 @@ async def _shorts(ctx, arg):
         candlestick.update_yaxes(title_text='Close Price', tickprefix='$')
 
         candlestick.write_image("/home/kili/stock.png")
+        await ctx.send("todo")
     except:
         await ctx.send(f"{arg.upper()} gibts ned oida! <:ThomasPassAuf:788838985878994964>")
 
