@@ -72,9 +72,8 @@ async def _shorts(ctx, arg):
                                                      low=stocks[('Low', arg)],
                                                      close=stocks[('Close', arg)])])
 
-        candlestick.update_layout(xaxis_rangeslider_visible=False, title='stock chart')
-        candlestick.update_xaxes(title_text='Date')
-        candlestick.update_yaxes(title_text='Close Price', tickprefix='$')
+        candlestick.update_layout(xaxis_rangeslider_visible=True)
+        candlestick.update_yaxes(tickprefix='$')
 
         candlestick.write_image(f"/tmp/the-stonk-master/{arg}.png")
         with open(f"/tmp/the-stonk-master/{arg}.png", 'rb') as f:
