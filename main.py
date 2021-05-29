@@ -60,7 +60,9 @@ async def _shorts(ctx, arg):
                        f"are shorted. This corresponds to **{short_percent_of_float}%** of shares available.")
 
         await ctx.send(msg)
-        await ctx.send("Real SI may be much higher -> Hedgies are fucked.")
+
+        if symbol == 'GME' or symbol == 'AMC':
+            await ctx.send("Real SI may be much higher -> Hedgies are fucked.")
     except:
         await ctx.send(f"{arg.upper()} gibts ned oida! <:ThomasPassAuf:788838985878994964>")
 
