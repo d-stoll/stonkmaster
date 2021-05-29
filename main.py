@@ -36,12 +36,23 @@ async def _price(ctx, arg):
 async def _shorts(ctx, arg):
     try:
         ticker = yf.Ticker(arg)
-        long_name = ticker.info['longName']
-        symbol = ticker.info['symbol']
-        shares_short = ticker.info['sharesShort']
-        short_percent_of_float = ticker.info['shortPercentOfFloat'] * 100
-        msg = (f"Currently **{'{:,}'.format(shares_short)} shares** of **{long_name} ({symbol})** are shorted. "
-               f"This corresponds to **{round(short_percent_of_float, 2)}%** of shares available.")
+        info = ticker.info
+        symbol = info['symbol']
+
+        if 'sharesShort' in info or 'shortPercentOfFloat' in info:
+            await ctx.send(f"{symbol} kann ned geshorted werden du dully! <:GanslSuffkoma:819901005193019392>")
+            pass
+
+        shares_short = info['sharesShort']
+        short_percent_of_float = info['shortPercentOfFloat'] * 100
+
+        if 'longName' in info:
+            msg = (f"Currently **{'{:,}'.format(shares_short)} shares** of **{info['long_name']} ({symbol})** "
+                   f"are shorted. This corresponds to **{round(short_percent_of_float, 2)}%** of shares available.")
+        else:
+            msg = (f"Currently **{'{:,}'.format(shares_short)} shares** of **{symbol}** "
+                   f"are shorted. This corresponds to **{round(short_percent_of_float, 2)}%** of shares available.")
+
         await ctx.send(msg)
         await ctx.send("Real SI may be much higher -> Hedgies are fucked.")
     except:
