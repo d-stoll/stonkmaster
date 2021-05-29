@@ -53,8 +53,8 @@ async def _price(ctx, arg):
 
         if _isMarketClosed():
             await ctx.send("Market is currently **closed**")
-        elif symbol == 'GME':
-            await ctx.send("Wennst ned woasd, wannst GME vakaffa wuisd, kosd de do orientiern: https://gmefloor.com/")
+        if symbol == 'GME':
+            await ctx.send("Wennst ned woasd, wannst GME vakaffa wuisd, kosd de do orientiern: <https://gmefloor.com/>")
     except:
         await ctx.send(f"{arg.upper()} gibts ned oida! <:ThomasPassAuf:788838985878994964>")
 
