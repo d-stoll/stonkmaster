@@ -44,14 +44,20 @@ async def _shorts(ctx, arg):
             return
 
         shares_short = info['sharesShort']
-        short_percent_of_float = info['shortPercentOfFloat'] * 100
+        short_percent_of_float = info['shortPercentOfFloat']
 
-        if 'longName' in info:
+        if short_percent_of_float is None:
             msg = (f"Currently **{'{:,}'.format(shares_short)} shares** of **{info['longName']} ({symbol})** "
-                   f"are shorted. This corresponds to **{round(short_percent_of_float, 2)}%** of shares available.")
+                   f"are shorted.")
         else:
-            msg = (f"Currently **{'{:,}'.format(shares_short)} shares** of **{symbol}** "
-                   f"are shorted. This corresponds to **{round(short_percent_of_float, 2)}%** of shares available.")
+            short_percent_of_float = round(short_percent_of_float * 100, 2)
+
+            if 'longName' in info:
+                msg = (f"Currently **{'{:,}'.format(shares_short)} shares** of **{info['longName']} ({symbol})** "
+                       f"are shorted. This corresponds to **{short_percent_of_float}%** of shares available.")
+            else:
+                msg = (f"Currently **{'{:,}'.format(shares_short)} shares** of **{symbol}** "
+                       f"are shorted. This corresponds to **{short_percent_of_float}%** of shares available.")
 
         await ctx.send(msg)
         await ctx.send("Real SI may be much higher -> Hedgies are fucked.")
