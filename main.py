@@ -64,6 +64,7 @@ async def _shorts(ctx, arg):
         with open('/home/kili/stock.png', 'rb') as f:
             picture = discord.File(f)
             await ctx.send(file=picture)
+
     except:
         await ctx.send(f"{arg.upper()} gibts ned oida! <:ThomasPassAuf:788838985878994964>")
 
