@@ -4,6 +4,7 @@ import os
 import datetime as dt
 import pandas_datareader.data as web
 import plotly.graph_objects as go
+import discord
 
 bot = commands.Bot(command_prefix='$')
 
@@ -60,7 +61,9 @@ async def _shorts(ctx, arg):
         candlestick.update_yaxes(title_text='Close Price', tickprefix='$')
 
         candlestick.write_image("/home/kili/stock.png")
-        await ctx.send("todo")
+        with open('/home/kili/stock.png', 'rb') as f:
+            picture = discord.File(f)
+            await ctx.send(file=picture)
     except:
         await ctx.send(f"{arg.upper()} gibts ned oida! <:ThomasPassAuf:788838985878994964>")
 
