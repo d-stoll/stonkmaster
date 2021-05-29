@@ -39,7 +39,7 @@ async def _shorts(ctx, arg):
         info = ticker.info
         symbol = info['symbol']
 
-        if 'sharesShort' in info or 'shortPercentOfFloat' in info:
+        if not 'sharesShort' in info or not 'shortPercentOfFloat' in info:
             await ctx.send(f"{symbol} kann ned geshorted werden du dully! <:GanslSuffkoma:819901005193019392>")
             pass
 
