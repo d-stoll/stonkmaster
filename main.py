@@ -28,6 +28,8 @@ async def _price(ctx, arg):
                    f"({'{0:+.2f}'.format(change)}%)  {emoji}")
 
         await ctx.send(msg)
+        if symbol == 'GME':
+            await ctx.send("Wennst ned woast, wannst GME vakaffa wuisd, kosd de do orientiern: https://gmefloor.com/")
     except:
         await ctx.send(f"{arg.upper()} gibts ned oida! <:ThomasPassAuf:788838985878994964>")
 
