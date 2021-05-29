@@ -79,7 +79,7 @@ async def _shorts(ctx, arg):
                                                      low=stocks[('Low', arg)],
                                                      close=stocks[('Close', arg)])])
 
-        chart_title = f"Chart of {arg.upper}"
+        chart_title = f"Chart of {arg.upper()}"
         candlestick.update_layout(xaxis_rangeslider_visible=False, title=chart_title)
         candlestick.update_yaxes(tickprefix='$')
 
