@@ -40,7 +40,7 @@ async def _shorts(ctx, arg):
         symbol = info['symbol']
 
         if 'sharesShort' not in info or 'shortPercentOfFloat' not in info:
-            await ctx.send(f"{symbol} kann ned geshorted werden du dully! <:GanslSuffkoma:819901005193019392>")
+            await ctx.send(f"{symbol} ko ned geshorted werdn, du Hosnbiesla! <:GanslSuffkoma:819901005193019392>")
             pass
 
         shares_short = info['sharesShort']
@@ -66,8 +66,6 @@ async def _shorts(ctx, arg):
         end = dt.datetime.now()
 
         stocks = web.DataReader([arg], 'yahoo', start, end)
-        # stocks_close = pd.DataFrame(
-        #  web.DataReader(['GME'], 'yahoo', start, end)['Close'])
         candlestick = go.Figure(data=[go.Candlestick(x=stocks.index,
                                                      open=stocks[('Open', arg)],
                                                      high=stocks[('High', arg)],
