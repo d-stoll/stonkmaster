@@ -56,7 +56,7 @@ async def _shorts(ctx, arg):
 
         if info['shortPercentOfFloat'] is not None:
             short_percent_of_float = round(info['shortPercentOfFloat'] * 100, 2)
-            msg = msg + f" This corresponds to **{short_percent_of_float}%** of shares available."
+            msg = msg + f" This corresponds to **{short_percent_of_float}%** of available shares."
 
         await ctx.send(msg)
 
