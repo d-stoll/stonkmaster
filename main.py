@@ -76,8 +76,8 @@ async def _shorts(ctx, arg):
         candlestick.update_xaxes(title_text='Date')
         candlestick.update_yaxes(title_text='Close Price', tickprefix='$')
 
-        candlestick.write_image("/home/kili/stock.png")
-        with open('/home/kili/stock.png', 'rb') as f:
+        candlestick.write_image(f"/tmp/the-stonk-master/{arg}.png")
+        with open(f"/tmp/the-stonk-master/{arg}.png", 'rb') as f:
             picture = discord.File(f)
             await ctx.send(file=picture)
 
