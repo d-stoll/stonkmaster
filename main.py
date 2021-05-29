@@ -5,6 +5,28 @@ import datetime as dt
 import pandas_datareader.data as web
 import plotly.graph_objects as go
 import discord
+import datetime, pytz, holidays
+
+
+def _isMarketClosed(now=None):
+    tz = pytz.timezone('US/Eastern')
+    us_holidays = holidays.US()
+    if not now:
+        now = datetime.datetime.now(tz)
+    openTime = datetime.time(hour=9, minute=30, second=0)
+    closeTime = datetime.time(hour=16, minute=0, second=0)
+    # If a holiday
+    if now.strftime('%Y-%m-%d') in us_holidays:
+        return True
+    # If before 0930 or after 1600
+    if (now.time() < openTime) or (now.time() > closeTime):
+        return True
+    # If it's a weekend
+    if now.date().weekday() > 4:
+        return True
+
+    return False
+
 
 bot = commands.Bot(command_prefix='$')
 
@@ -28,6 +50,10 @@ async def _price(ctx, arg):
                    f"({'{0:+.2f}'.format(change)}%)  {emoji}")
 
         await ctx.send(msg)
+
+        if _isMarketClosed():
+            await ctx.send("Market is closed **today**")
+
         if symbol == 'GME':
             await ctx.send("Wennst ned woasd, wannst GME vakaffa wuisd, kosd de do orientiern: https://gmefloor.com/")
     except:
