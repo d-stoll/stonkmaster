@@ -81,7 +81,7 @@ async def _shorts(ctx, arg):
 
         stock = yf.Ticker(arg)
         info = stock.info
-        chart_title = f"Chart of {info['longName']} ({info['symbol']}"
+        chart_title = f"Chart of {info['longName']} ({info['symbol']})"
         candlestick.update_layout(xaxis_rangeslider_visible=False, title=chart_title)
         candlestick.update_yaxes(tickprefix='$')
 
