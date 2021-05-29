@@ -41,13 +41,13 @@ async def _shorts(ctx, arg):
 
         if 'sharesShort' not in info or 'shortPercentOfFloat' not in info:
             await ctx.send(f"{symbol} ko ned geshorted werdn, du Hosnbiesla! <:GanslSuffkoma:819901005193019392>")
-            pass
+            return
 
         shares_short = info['sharesShort']
         short_percent_of_float = info['shortPercentOfFloat'] * 100
 
         if 'longName' in info:
-            msg = (f"Currently **{'{:,}'.format(shares_short)} shares** of **{info['long_name']} ({symbol})** "
+            msg = (f"Currently **{'{:,}'.format(shares_short)} shares** of **{info['longName']} ({symbol})** "
                    f"are shorted. This corresponds to **{round(short_percent_of_float, 2)}%** of shares available.")
         else:
             msg = (f"Currently **{'{:,}'.format(shares_short)} shares** of **{symbol}** "
