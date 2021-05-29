@@ -85,8 +85,8 @@ async def _chart(ctx, arg):
         candlestick.update_layout(xaxis_rangeslider_visible=False, title=chart_title)
         candlestick.update_yaxes(tickprefix='$')
 
-        candlestick.write_image(f"/tmp/the-stonk-master/{arg}.png")
-        with open(f"/tmp/the-stonk-master/{arg}.png", 'rb') as f:
+        candlestick.write_image(f"/tmp/the-stonk-master/{info['symbol']}.png")
+        with open(f"/tmp/the-stonk-master/{info['symbol']}.png", 'rb') as f:
             picture = discord.File(f)
             await ctx.send(file=picture)
 
