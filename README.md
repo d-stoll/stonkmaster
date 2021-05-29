@@ -1,4 +1,4 @@
-# The-Stonk-Master Discord Bot
+# The-Stonk-Master 📈 Discord Bot
 
 - **get the price**: $price GME
 - **get infos about shorts**: $shorts GME
