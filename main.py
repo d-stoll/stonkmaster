@@ -5,7 +5,9 @@ import datetime as dt
 import pandas_datareader.data as web
 import plotly.graph_objects as go
 import discord
-import datetime, pytz, holidays
+import datetime
+import pytz
+import holidays
 
 
 def _is_market_closed(now=None):  # credits @Reddit u/numbuh-0
