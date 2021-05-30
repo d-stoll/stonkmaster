@@ -9,6 +9,7 @@ import datetime, pytz, holidays
 
 
 def _is_market_closed(now=None):  # credits @Reddit u/numbuh-0
+
     tz = pytz.timezone('US/Eastern')
     us_holidays = holidays.US()
     if not now:
