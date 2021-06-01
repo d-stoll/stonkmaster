@@ -42,8 +42,6 @@ async def _price(ctx, arg):
         current = info['regularMarketPrice']
         previous = info['previousClose']
         symbol = info['symbol']
-        if symbol == 'GME':
-            current = 69420420
         change = ((current - previous) / previous) * 100
         emoji = "<:stonks:785565572300800050>" if change >= 0 else "<:notstonks:847892457138946128>"
 
