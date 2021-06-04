@@ -1,4 +1,4 @@
-# The Stonk Master 📈🙌💎
+# The Stonk Master 📈💎🙌
 
 The Stonk Master is a Discord bot for fellow apes to monitor stonks without leaving their gaming habitat. It presents information about stonks in a very easy and simple way.
 
