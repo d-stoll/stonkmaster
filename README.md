@@ -34,6 +34,7 @@ Example:
 <pre>
 > $chart BB
 </pre>
+![Screenshot](https://github.com/d-stoll/the-stonk-master/blob/master/img/stonkmaster_chart.PNG)
 
 ---
 
