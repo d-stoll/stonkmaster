@@ -1,4 +1,4 @@
-name: Deployment of application in Hetzner cloud
+name: deployment
 
 on:
   push:
