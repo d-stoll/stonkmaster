@@ -35,7 +35,7 @@ Example:
 <pre>
 > $chart GME
 
-<img src=https://github.com/d-stoll/the-stonk-master/blob/master/img/GME_chart.png />
+<img src=https://github.com/d-stoll/the-stonk-master/blob/master/img/GME_chart.png width="50%"/>
 </pre>
 
 
