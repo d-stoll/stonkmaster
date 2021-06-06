@@ -33,8 +33,8 @@ Generates a chart showing the price development of the share in the last months.
 Example:
 <pre>
 > $chart BB
-  ![Screenshot](https://github.com/d-stoll/the-stonk-master/blob/master/img/stonkmaster_chart.PNG)
 </pre>
+![Screenshot](https://github.com/d-stoll/the-stonk-master/blob/master/img/stonkmaster_chart.PNG)
 
 
 ---
