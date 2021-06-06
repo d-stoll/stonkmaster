@@ -1,3 +1,5 @@
-/venv/
-/.idea/
-test.py
+venv
+.idea
+build
+dist
+stonkmaster.egg-info

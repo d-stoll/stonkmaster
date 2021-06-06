@@ -10,15 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Pull master & Restart systemd service on server
       uses: appleboy/ssh-action@v0.1.4
       with:
@@ -28,8 +19,8 @@ jobs:
         script: |
           cd /opt/the-stonk-master 
           git pull
-          pip install -r requirements.txt
-          sudo /bin/systemctl restart the-stonk-master
+          pip install .
+          sudo /bin/systemctl restart stonkmaster
         
 
 
