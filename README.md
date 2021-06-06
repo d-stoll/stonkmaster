@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/github/license/d-stoll/the-stonk-master)
 ![Top language](https://img.shields.io/github/languages/top/d-stoll/the-stonk-master)
 ![Lines of code](https://img.shields.io/tokei/lines/github/d-stoll/the-stonk-master?color=orange)
-![Commit activity](https://img.shields.io/github/commit-activity/w/d-stoll/the-stonk-master?color=purple)
+![Commit activity](https://img.shields.io/github/commit-activity/m/d-stoll/the-stonk-master?color=purple)
 
 The Stonk Master is a Discord bot for fellow apes to monitor stonks without leaving their gaming habitat. It presents information about stonks in a very easy and simple way.
 
