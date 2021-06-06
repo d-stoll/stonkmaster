@@ -119,6 +119,8 @@ async def _chart(ctx, arg):
             picture = discord.File(f)
             await ctx.send(file=picture)
 
+        await ctx.send("Fia an bessern Graph schaugst moi do vorbei: <https://finance.yahoo.com/chart/GME/>")
+
     except:
         await ctx.send(f"{arg.upper()} gibt's ned oida! <:ThomasPassAuf:788838985878994964>")
 
