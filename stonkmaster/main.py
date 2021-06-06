@@ -1,4 +1,5 @@
 import os
+
 from discord.ext import commands
 
 from stonkmaster.commands.ChartCommand import ChartCommand
@@ -23,5 +24,9 @@ async def _chart(ctx, arg):
     await ChartCommand().run(ctx, arg)
 
 
-if __name__ == "__main__":
+def main():
     bot.run(os.environ['DISCORD_TOKEN'])
+
+
+if __name__ == "__main__":
+    main()
