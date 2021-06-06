@@ -34,6 +34,7 @@ Generates a chart showing the price development of the share in the last months.
 Example:
 <pre>
 > $chart GME
+
 <img src=https://github.com/d-stoll/the-stonk-master/blob/master/img/GME_chart.png />
 </pre>
 
