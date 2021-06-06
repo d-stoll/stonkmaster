@@ -60,7 +60,7 @@ async def _price(ctx, arg):
         elif symbol == 'GME':
             await ctx.send("Wennst ned woasd, wannst GME vakaffa wuisd, kosd de do orientiern: <https://gmefloor.com/>")
     except:
-        await ctx.send(f"{arg.upper()} gibts ned oida! <:ThomasPassAuf:788838985878994964>")
+        await ctx.send(f"{arg.upper()} gibt's ned oida! <:ThomasPassAuf:788838985878994964>")
 
 
 @bot.command(name='shorts')
@@ -92,7 +92,7 @@ async def _shorts(ctx, arg):
         if symbol == 'GME' or symbol == 'AMC':
             await ctx.send("Real SI may be much higher -> Hedgies are fucked.")
     except:
-        await ctx.send(f"{arg.upper()} gibts ned oida! <:ThomasPassAuf:788838985878994964>")
+        await ctx.send(f"{arg.upper()} gibt's ned oida! <:ThomasPassAuf:788838985878994964>")
 
 
 @bot.command(name='chart')
@@ -120,7 +120,7 @@ async def _chart(ctx, arg):
             await ctx.send(file=picture)
 
     except:
-        await ctx.send(f"{arg.upper()} gibts ned oida! <:ThomasPassAuf:788838985878994964>")
+        await ctx.send(f"{arg.upper()} gibt's ned oida! <:ThomasPassAuf:788838985878994964>")
 
 
 bot.run(os.environ['DISCORD_TOKEN'])
