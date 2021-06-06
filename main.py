@@ -1,13 +1,13 @@
 import yfinance as yf
-from discord.ext import commands
-import os
 import datetime as dt
 import pandas_datareader.data as web
 import plotly.graph_objects as go
+import os
 import discord
 import datetime
 import pytz
 import holidays
+from discord.ext import commands
 
 
 def _is_market_closed(now=None):  # credits @Reddit u/numbuh-0
