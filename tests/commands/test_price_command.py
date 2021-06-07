@@ -19,6 +19,9 @@ async def test_price_gme():
 
     assert re.match(matching_regex, discord_ctx.messages.pop(0))
 
+    matching_regex = "Wennst ned woasd, wannst GME vakaffa wuisd, kosd de do orientiern: <https://gmefloor.com/>"
+    assert re.match(matching_regex, discord_ctx.messages.pop(0))
+
 
 @pytest.mark.asyncio
 async def test_price_amc():
