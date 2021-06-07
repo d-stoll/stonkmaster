@@ -11,8 +11,8 @@ async def test_price_gme():
     price_cmd = PriceCommand()
 
     await price_cmd.run(ctx=discord_ctx, arg="GME")
-    matching_regex = ("The market price of \\*\\*GameStop Corp\\. \\(GME\\)\\*\\* is \\*\\*\\d+\\.\\d{1,2}\\$\\*\\* "
-                      "\\((\\+|\\-)\\d+\\.\\d{1,2}\\%\\).*"
+    matching_regex = ("The market price of \\*\\*GameStop Corp\\. \\(GME\\)\\*\\* is \\*\\*\\d+(\\.\\d{1,2})?"
+                      "\\$\\*\\* \\((\\+|\\-)\\d+\\.\\d{1,2}\\%\\).*"
                       )
     if is_market_closed():
         assert discord_ctx.messages.pop() == "Market is currently **closed**"
@@ -30,7 +30,7 @@ async def test_price_amc():
 
     await price_cmd.run(ctx=discord_ctx, arg="AMC")
     matching_regex = ("The market price of \\*\\*AMC Entertainment Holdings, Inc\\. \\(AMC\\)\\*\\* is \\*\\*"
-                      "\\d+\\.\\d{1,2}\\$\\*\\* \\((\\+|\\-)\\d+\\.\\d{1,2}\\%\\).*"
+                      "\\d+(\\.\\d{1,2})?\\$\\*\\* \\((\\+|\\-)\\d+\\.\\d{1,2}\\%\\).*"
                       )
 
     if is_market_closed():
