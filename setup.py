@@ -17,7 +17,7 @@ setup(
 
     packages=find_packages(exclude=['tests', 'tests.*']),
 
-    python_requires='>=3.8, <4',
+    python_requires='>=3.7, <4',
     install_requires=[
         'yfinance',
         'discord.py',
