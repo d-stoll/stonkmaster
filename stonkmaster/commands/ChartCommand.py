@@ -32,7 +32,7 @@ class ChartCommand:
                 picture = discord.File(f)
                 await ctx.send(file=picture)
 
-            await ctx.send(f"Fia an bessern Graph schaust moi do vorbei: <https://finance.yahoo.com/chart/{symbol}/>")
+            await ctx.send(f"Fia an bessern Graph schaust moi do vorbei: <https://finance.yahoo.com/chart/{info.symbol}/>")
 
         except:
             await ctx.send(f"{arg.upper()} gibt's ned oida! {self.emoji_error}")
