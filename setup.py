@@ -6,7 +6,7 @@ long_description = (here / 'README.md').read_text(encoding='utf-8')
 
 setup(
     name='stonkmaster',
-    version='0.0.1',
+    version='1.0.0',
     description='Discord bot for stonks',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -17,7 +17,7 @@ setup(
 
     packages=find_packages(exclude=['tests', 'tests.*']),
 
-    python_requires='>=3.7, <4',
+    python_requires='>=3.8, <4',
     install_requires=[
         'yfinance',
         'discord.py',
