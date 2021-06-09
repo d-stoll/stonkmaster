@@ -34,6 +34,6 @@ async def test_price_amc():
                       )
 
     if is_market_closed():
-        assert discord_ctx.messages.pop() == "Market is currently **closed** <:lock:>"
+        assert discord_ctx.messages.pop() == "Market is currently **closed** :lock:"
 
     assert re.match(matching_regex, discord_ctx.messages.pop())

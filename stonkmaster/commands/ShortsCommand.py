@@ -5,6 +5,7 @@ class ShortsCommand:
     def __init__(self):
         self.emoji_no_short = "<:GanslSuffkoma:819901005193019392>"
         self.emoji_error = "<:ThomasPassAuf:788838985878994964>"
+        self.emoji_kennyg = "<:kennyg:852146613220933653>"
 
     async def run(self, ctx, arg):
         try:
@@ -32,6 +33,6 @@ class ShortsCommand:
             await ctx.send(msg)
 
             if symbol == 'GME' or symbol == 'AMC':
-                await ctx.send("Real SI may be much higher -> Hedgies are fucked.")
+                await ctx.send(f"Real SI may be much higher -> Hedgies are fucked. {self.emoji_kennyg}")
         except:
             await ctx.send(f"{arg.upper()} gibt's ned oida! {self.emoji_error}")
