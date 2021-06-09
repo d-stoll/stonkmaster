@@ -7,7 +7,7 @@ class PriceCommand:
         self.emoji_up = "<:stonks:785565572300800050>"
         self.emoji_down = "<:notstonks:847892457138946128>"
         self.emoji_error = "<:ThomasPassAuf:788838985878994964>"
-        self.emoji_closed = "<:lock:>"
+        self.emoji_closed = ":lock:"
 
     async def run(self, ctx, arg):
         try:

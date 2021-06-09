@@ -15,7 +15,7 @@ async def test_price_gme():
                       "\\$\\*\\* \\((\\+|\\-)\\d+\\.\\d{1,2}\\%\\).*"
                       )
     if is_market_closed():
-        assert discord_ctx.messages.pop() == "Market is currently **closed** <:lock:>"
+        assert discord_ctx.messages.pop() == "Market is currently **closed** :lock:"
     else:
         gme_special_msg = "Wennst ned woasd, wannst GME vakaffa wuisd, kosd de do orientiern: <https://gmefloor.com/>"
         assert gme_special_msg == discord_ctx.messages.pop()
