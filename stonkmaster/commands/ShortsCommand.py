@@ -4,13 +4,19 @@ import yfinance as yf
 class ShortsCommand:
     def __init__(self):
         self.emoji_no_short = "<:GanslSuffkoma:819901005193019392>"
-        self.emoji_error = "<:ThomasPassAuf:788838985878994964>"
+        self.emoji_not_found = "<:ThomasPassAuf:788838985878994964>"
+        self.emoji_error = ":flag_white:"
         self.emoji_kennyg = "<:kennyg:852146613220933653>"
 
     async def run(self, ctx, arg):
         try:
             ticker = yf.Ticker(arg)
             info = ticker.info
+
+            if len(info) <= 1:
+                await ctx.send(f"{arg.upper()} gibt's ned oida! {self.emoji_not_found}")
+                return
+
             symbol = info['symbol']
 
             if 'sharesShort' not in info or 'shortPercentOfFloat' not in info:
@@ -34,5 +40,7 @@ class ShortsCommand:
 
             if symbol == 'GME' or symbol == 'AMC':
                 await ctx.send(f"Real SI may be much higher -> Hedgies are fucked. {self.emoji_kennyg}")
-        except:
-            await ctx.send(f"{arg.upper()} gibt's ned oida! {self.emoji_error}")
+
+        except Exception as ex:
+            print(ex)
+            await ctx.send(f"Too many errors, I give up {self.emoji_error}")

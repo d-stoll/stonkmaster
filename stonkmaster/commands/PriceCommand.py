@@ -6,19 +6,24 @@ class PriceCommand:
     def __init__(self):
         self.emoji_up = "<:stonks:785565572300800050>"
         self.emoji_down = "<:notstonks:847892457138946128>"
-        self.emoji_error = "<:ThomasPassAuf:788838985878994964>"
+        self.emoji_not_found = "<:ThomasPassAuf:788838985878994964>"
+        self.emoji_error = ":flag_white:"
         self.emoji_closed = ":lock:"
 
     async def run(self, ctx, arg):
         try:
             ticker = yf.Ticker(arg)
             info = ticker.info
+
+            if len(info) <= 1:
+                await ctx.send(f"{arg.upper()} gibt's ned oida! {self.emoji_not_found}")
+                return
+
             current = info['regularMarketPrice']
             previous = info['previousClose']
             symbol = info['symbol']
             change = ((current - previous) / previous) * 100
             emoji = self.emoji_up if change >= 0 else self.emoji_down
-
 
             if 'longName' in info:
                 msg = (f"The market price of **{info['longName']} ({symbol})** is **{round(current, 2)}$** "
@@ -33,5 +38,7 @@ class PriceCommand:
                 await ctx.send(f"Market is currently **closed** {self.emoji_closed}")
             elif symbol == 'GME':
                 await ctx.send("Wennst ned woasd, wannst GME vakaffa wuisd, kosd de do orientiern: <https://gmefloor.com/>")
-        except:
-            await ctx.send(f"{arg.upper()} gibt's ned oida! {self.emoji_error}")
+
+        except Exception as ex:
+            print(ex)
+            await ctx.send(f"Too many errors, I give up {self.emoji_error}")
