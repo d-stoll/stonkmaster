@@ -12,7 +12,7 @@ class SecCommand:
     async def run(self, ctx, ticker, type):
         try:
             yf_ticker = yf.Ticker(ticker)
-
+            type = type.lower()
             info = yf_ticker.info
 
             if len(info) <= 1:
