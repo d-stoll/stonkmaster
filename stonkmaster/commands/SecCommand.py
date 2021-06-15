@@ -30,11 +30,11 @@ class SecCommand:
                 color=0x00ff00)
             urls = filings.get_urls()
             for i, url in enumerate(urls[yf_ticker.info['symbol'].lower()][:5]):
-                accession_number = filings.get_accession_number(url).removesuffix(".txt")
-                html_link = url.removesuffix(".txt") + "-index.html"
+                accession_number = filings.get_accession_number(url)[:-4]
+                html_link = url[:-4] + "-index.html"
                 filings_embed.add_field(name=f"{i + 1} - {accession_number}", value=html_link, inline=False)
             await ctx.send(embed=filings_embed)
 
         except Exception as ex:
             print(ex)
-            await ctx.send(f"Too many errors, I give up {self.emoji_error}")
+            await ctx.send(f"Too many errors, I give up. {self.emoji_error}")
