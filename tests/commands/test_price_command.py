@@ -10,7 +10,7 @@ async def test_price_gme():
     discord_ctx = DiscordContextMock()
     price_cmd = PriceCommand()
 
-    await price_cmd.run(ctx=discord_ctx, arg="GME")
+    await price_cmd.run(ctx=discord_ctx, ticker="GME")
     matching_regex = ("The market price of \\*\\*GameStop Corp\\. \\(GME\\)\\*\\* is \\*\\*\\d+(\\.\\d{1,2})?"
                       "\\$\\*\\* \\((\\+|\\-)\\d+\\.\\d{1,2}\\%\\).*"
                       )
@@ -28,7 +28,7 @@ async def test_price_amc():
     discord_ctx = DiscordContextMock()
     price_cmd = PriceCommand()
 
-    await price_cmd.run(ctx=discord_ctx, arg="AMC")
+    await price_cmd.run(ctx=discord_ctx, ticker="AMC")
     matching_regex = ("The market price of \\*\\*AMC Entertainment Holdings, Inc\\. \\(AMC\\)\\*\\* is \\*\\*"
                       "\\d+(\\.\\d{1,2})?\\$\\*\\* \\((\\+|\\-)\\d+\\.\\d{1,2}\\%\\).*"
                       )

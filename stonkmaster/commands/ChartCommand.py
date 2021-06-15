@@ -10,24 +10,24 @@ class ChartCommand:
         self.emoji_not_found = "<:ThomasPassAuf:788838985878994964>"
         self.emoji_error = ":flag_white:"
 
-    async def run(self, ctx, arg):
+    async def run(self, ctx, ticker):
         try:
-            stock = yf.Ticker(arg)
-            info = stock.info
+            yf_ticker = yf.Ticker(ticker)
+            info = yf_ticker.info
 
             if len(info) <= 1:
-                await ctx.send(f"{arg.upper()} gibt's ned oida! {self.emoji_not_found}")
+                await ctx.send(f"{ticker.upper()} gibt's ned oida! {self.emoji_not_found}")
                 return
 
             start = dt.datetime(2021, 1, 1)
             end = dt.datetime.now()
 
-            stocks = web.DataReader([arg], 'yahoo', start, end)
+            stocks = web.DataReader([ticker], 'yahoo', start, end)
             candlestick = go.Figure(data=[go.Candlestick(x=stocks.index,
-                                                         open=stocks[('Open', arg)],
-                                                         high=stocks[('High', arg)],
-                                                         low=stocks[('Low', arg)],
-                                                         close=stocks[('Close', arg)])])
+                                                         open=stocks[('Open', ticker)],
+                                                         high=stocks[('High', ticker)],
+                                                         low=stocks[('Low', ticker)],
+                                                         close=stocks[('Close', ticker)])])
 
             chart_title = f"Chart of {info['longName']} ({info['symbol']})"
             candlestick.update_layout(xaxis_rangeslider_visible=False, title=chart_title)

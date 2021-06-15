@@ -8,13 +8,13 @@ class ShortsCommand:
         self.emoji_error = ":flag_white:"
         self.emoji_kennyg = "<:kennyg:852146613220933653>"
 
-    async def run(self, ctx, arg):
+    async def run(self, ctx, ticker):
         try:
-            ticker = yf.Ticker(arg)
-            info = ticker.info
+            yf_ticker = yf.Ticker(ticker)
+            info = yf_ticker.info
 
             if len(info) <= 1:
-                await ctx.send(f"{arg.upper()} gibt's ned oida! {self.emoji_not_found}")
+                await ctx.send(f"{ticker.upper()} gibt's ned oida! {self.emoji_not_found}")
                 return
 
             symbol = info['symbol']
