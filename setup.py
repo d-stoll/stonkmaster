@@ -23,7 +23,8 @@ setup(
         'discord.py',
         'holidays',
         'plotly',
-        'pandas'
+        'pandas',
+        'secedgar'
     ],
 
     entry_points='''

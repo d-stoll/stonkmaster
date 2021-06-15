@@ -4,6 +4,7 @@ from discord.ext import commands
 
 from stonkmaster.commands.ChartCommand import ChartCommand
 from stonkmaster.commands.PriceCommand import PriceCommand
+from stonkmaster.commands.SecCommand import SecCommand
 from stonkmaster.commands.ShortsCommand import ShortsCommand
 
 help_command = commands.DefaultHelpCommand(
@@ -34,6 +35,12 @@ async def _shorts(ctx, arg):
              description="Generates a chart showing the price development of the share in the last months.")
 async def _chart(ctx, arg):
     await ChartCommand().run(ctx, arg)
+
+
+@bot.command(name="sec",
+             description="Fetches the latest SEC company filings from EDGAR.")
+async def _chart(ctx, ticker, type):
+    await SecCommand().run(ctx, ticker, type)
 
 
 def main():
