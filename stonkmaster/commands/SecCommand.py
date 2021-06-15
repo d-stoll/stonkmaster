@@ -37,4 +37,4 @@ class SecCommand:
 
         except Exception as ex:
             print(ex)
-            await ctx.send(f"Do hod wos ned bassd. Do bin i raus. {self.emoji_error}")
+            await ctx.send(f"Do hod wos ned bassd, I bin raus. {self.emoji_error}")
