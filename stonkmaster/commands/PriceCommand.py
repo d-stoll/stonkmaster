@@ -9,6 +9,8 @@ class PriceCommand:
         self.emoji_not_found = "<:ThomasPassAuf:788838985878994964>"
         self.emoji_error = ":flag_white:"
         self.emoji_closed = ":lock:"
+        self.emoji_money = ":moneybag:"
+        self.emoji_bulb = ":bulb:"
 
     async def run(self, ctx, ticker):
         try:
@@ -37,7 +39,8 @@ class PriceCommand:
             if is_market_closed():
                 await ctx.send(f"Market is currently **closed** {self.emoji_closed}")
             elif symbol == 'GME':
-                await ctx.send("Wennst ned woasd, wannst GME vakaffa wuisd, kosd de do orientiern: <https://gmefloor.com/>")
+                await ctx.send(f"Wennst ned woasd, wannst GME vakaffa wuisd, kosd de do orientiern: <https://gmefloor.com/> {self.emoji_money}")
+                await ctx.send(f"Weitere Infos findst do: <https://gme.crazyawesomecompany.com/> {self.emoji_bulb}")
 
         except Exception as ex:
             print(ex)
