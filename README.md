@@ -18,7 +18,7 @@ Shows the current price of the stonk, as well as its daily change.
 <blockquote>
     <p>&gt;  <i>$price AMC</i></p>
     <img align="left" src=".github/assets/stonkmaster-avatar.png" alt="stonkmaster avatar">
-        <p><b>Stonk Master</b></p>
+        <b>Stonk Master</b><br />
         The market price of <b>AMC Entertainment Holdings, Inc. (AMC)</b> is <b>65.40$</b> (+104.12%)
 </blockquote>
 
@@ -29,7 +29,7 @@ Provides currently known information on how heavily the stonk is shorted.
 <blockquote>
     <p>&gt;  <i>$shorts GME</i></p>
     <img align="left" src=".github/assets/stonkmaster-avatar.png" alt="stonkmaster avatar">
-        <p><b>Stonk Master</b></p>
+        <b>Stonk Master</b><br />
         Currently <b>11,972,632</b> shares of <b>GameStop Corp. (GME)</b> are shorted. This corresponds to <b>29.34%</b> of available shares.
 </blockquote>
 
@@ -40,7 +40,7 @@ Generates a chart showing the price development of the share in the last months.
 <blockquote>
     <p>&gt;  <i>$price AMC</i></p>
     <img align="left" src=".github/assets/stonkmaster-avatar.png" alt="stonkmaster avatar">
-        <p><b>Stonk Master</b></p>
+        <b>Stonk Master</b><br />
         <img src=".github/assets/gme-chart.png" width="50%" alt="look at the GME chart yourself"/>
 </blockquote>
 
