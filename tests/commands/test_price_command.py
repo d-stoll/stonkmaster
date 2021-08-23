@@ -1,16 +1,17 @@
+import configparser
 import re
 import pytest
 from stonkmaster.commands.PriceCommand import PriceCommand
 from stonkmaster.util.market_utils import is_market_closed
-from tests.utils import DiscordContextMock
+from tests.utils import DiscordContextMock, load_config
 
 
 @pytest.mark.asyncio
 async def test_price_gme():
     discord_ctx = DiscordContextMock()
-    price_cmd = PriceCommand()
+    price_cmd = PriceCommand(None, load_config())
 
-    await price_cmd.run(ctx=discord_ctx, ticker="GME")
+    await price_cmd._price(discord_ctx, "GME")
     matching_regex = ("The market price of \\*\\*GameStop Corp\\. \\(GME\\)\\*\\* is \\*\\*\\d+(\\.\\d{1,2})?"
                       "\\$\\*\\* \\((\\+|\\-)\\d+\\.\\d{1,2}\\%\\).*"
                       )
@@ -28,9 +29,9 @@ async def test_price_gme():
 @pytest.mark.asyncio
 async def test_price_amc():
     discord_ctx = DiscordContextMock()
-    price_cmd = PriceCommand()
+    price_cmd = PriceCommand(None, load_config())
 
-    await price_cmd.run(ctx=discord_ctx, ticker="AMC")
+    await price_cmd._price(ctx=discord_ctx, ticker="AMC")
     matching_regex = ("The market price of \\*\\*AMC Entertainment Holdings, Inc\\. \\(AMC\\)\\*\\* is \\*\\*"
                       "\\d+(\\.\\d{1,2})?\\$\\*\\* \\((\\+|\\-)\\d+\\.\\d{1,2}\\%\\).*"
                       )

@@ -1,15 +1,22 @@
+import configparser
+
 import discord
 import yfinance as yf
+from discord.ext import commands
 from secedgar.filings import Filing, FilingType
 
 
-class SecCommand:
-    def __init__(self):
+class SecCommand(commands.Cog):
+    def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
+        self.bot = bot
+        self.config = config
         self.emoji_not_found = "<:ThomasPassAuf:788838985878994964>"
         self.emoji_error = ":flag_white:"
         self.emoji_search = ":mag_right:"
 
-    async def run(self, ctx, ticker, type):
+    @commands.command(name="sec",
+                      description="Fetches the latest SEC company filings from EDGAR.")
+    async def _sec(self, ctx, ticker, type):
         try:
             yf_ticker = yf.Ticker(ticker)
             type = type.lower()

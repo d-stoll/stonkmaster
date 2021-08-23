@@ -1,3 +1,5 @@
+import configparser
+
 import discord
 from typing import List
 
@@ -13,3 +15,11 @@ class DiscordContextMock:
 
         if msg is not None:
             self.messages.append(msg)
+
+
+def load_config():
+    config_file = "../../default.ini"
+    config = configparser.ConfigParser()
+    config.read(config_file)
+
+    return config

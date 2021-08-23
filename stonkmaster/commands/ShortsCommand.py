@@ -1,14 +1,21 @@
+import configparser
+
 import yfinance as yf
+from discord.ext import commands
 
 
-class ShortsCommand:
-    def __init__(self):
+class ShortsCommand(commands.Cog):
+    def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
+        self.bot = bot
+        self.config = config
         self.emoji_no_short = "<:GanslSuffkoma:819901005193019392>"
         self.emoji_not_found = "<:ThomasPassAuf:788838985878994964>"
         self.emoji_error = ":flag_white:"
         self.emoji_kennyg = "<:kennyg:852146613220933653>"
 
-    async def run(self, ctx, ticker):
+    @commands.command(name="shorts",
+                      description="Provides currently known information on how heavily the stonk is shorted.")
+    async def _shorts(self, ctx, ticker):
         try:
             yf_ticker = yf.Ticker(ticker)
             info = yf_ticker.info

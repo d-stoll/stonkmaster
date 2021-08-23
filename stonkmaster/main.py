@@ -1,3 +1,5 @@
+import argparse
+import configparser
 import os
 
 from discord.ext import commands
@@ -7,43 +9,25 @@ from stonkmaster.commands.PriceCommand import PriceCommand
 from stonkmaster.commands.SecCommand import SecCommand
 from stonkmaster.commands.ShortsCommand import ShortsCommand
 
-help_command = commands.DefaultHelpCommand(
-    no_category="Commands"
-)
-
-description = ("The Stonk Master is a Discord bot for fellow apes to monitor stonks without "
-               "leaving their gaming habitat. It presents information about stonks in a very "
-               "easy and simple way."
-               )
-
-bot = commands.Bot(command_prefix='$', description= description, help_command=help_command)
-
-
-@bot.command(name="price",
-             description="Shows the current price of the stonk, as well as its daily change.")
-async def _price(ctx, ticker):
-    await PriceCommand().run(ctx, ticker)
-
-
-@bot.command(name="shorts",
-             description="Provides currently known information on how heavily the stonk is shorted.")
-async def _shorts(ctx, ticker):
-    await ShortsCommand().run(ctx, ticker)
-
-
-@bot.command(name="chart",
-             description="Generates a chart showing the price development of the share in the last months.")
-async def _chart(ctx, ticker):
-    await ChartCommand().run(ctx, ticker)
-
-
-@bot.command(name="sec",
-             description="Fetches the latest SEC company filings from EDGAR.")
-async def _sec(ctx, ticker, type):
-    await SecCommand().run(ctx, ticker, type)
-
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", help="Path of configuration file.", default="/opt/stonkmaster/default.ini")
+    args = parser.parse_args()
+
+    config = configparser.ConfigParser()
+    config.read(args.config)
+
+    help_command = commands.DefaultHelpCommand(no_category="Commands")
+    bot = commands.Bot(command_prefix=config["discord.py"]["CommandPrefix"],
+                       description=config["discord.py"]["description"],
+                       help_command=help_command)
+
+    bot.add_cog(ChartCommand(bot, config))
+    bot.add_cog(PriceCommand(bot, config))
+    bot.add_cog(SecCommand(bot, config))
+    bot.add_cog(ShortsCommand(bot, config))
+
     bot.run(os.environ["DISCORD_TOKEN"])
 
 

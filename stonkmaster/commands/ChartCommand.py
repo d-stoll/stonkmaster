@@ -1,22 +1,26 @@
+import configparser
 import datetime as dt
 import discord
 import pandas_datareader.data as web
 import plotly.graph_objects as go
 import yfinance as yf
+from discord.ext import commands
 
 
-class ChartCommand:
-    def __init__(self):
-        self.emoji_not_found = "<:ThomasPassAuf:788838985878994964>"
-        self.emoji_error = ":flag_white:"
+class ChartCommand(commands.Cog):
+    def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
+        self.bot = bot
+        self.config = config
 
-    async def run(self, ctx, ticker):
+    @commands.command(name="chart",
+                      description="Generates a chart showing the price development of the share in the last months.")
+    async def _chart(self, ctx, ticker):
         try:
             yf_ticker = yf.Ticker(ticker)
             info = yf_ticker.info
 
             if len(info) <= 1:
-                await ctx.send(f"{ticker.upper()} gibt's ned oida! {self.emoji_not_found}")
+                await ctx.send(f"{ticker.upper()} gibt's ned oida! {self.config['emojis']['NotFound']}")
                 return
 
             start = dt.datetime(2021, 1, 1)
@@ -42,4 +46,4 @@ class ChartCommand:
 
         except Exception as ex:
             print(ex)
-            await ctx.send(f"Do hod wos ned bassd, I bin raus. {self.emoji_error}")
+            await ctx.send(f"Do hod wos ned bassd, I bin raus. {self.config['emojis']['Error']}")

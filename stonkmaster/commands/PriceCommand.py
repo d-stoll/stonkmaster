@@ -1,9 +1,15 @@
+import configparser
+
 import yfinance as yf
+from discord.ext import commands
+
 from stonkmaster.util.market_utils import is_market_closed
 
 
-class PriceCommand:
-    def __init__(self):
+class PriceCommand(commands.Cog):
+    def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
+        self.bot = bot
+        self.config = config
         self.emoji_up = "<:stonks:785565572300800050>"
         self.emoji_down = "<:notstonks:847892457138946128>"
         self.emoji_not_found = "<:ThomasPassAuf:788838985878994964>"
@@ -12,7 +18,9 @@ class PriceCommand:
         self.emoji_money = ":moneybag:"
         self.emoji_bulb = ":bulb:"
 
-    async def run(self, ctx, ticker):
+    @commands.command(name="price",
+                      description="Shows the current price of the stonk, as well as its daily change.")
+    async def _price(self, ctx, ticker):
         try:
             yf_ticker = yf.Ticker(ticker)
             info = yf_ticker.info

@@ -15,33 +15,32 @@ The Stonk Master is a Discord bot for fellow apes to monitor stonks without leav
 
 Shows the current price of the stonk, as well as its daily change.
 
-Example:
-<pre>
-> $price AMC
-The market price of <b>AMC Entertainment Holdings, Inc. (AMC)</b> is <b>65.40$</b> (+104.12%)
-</pre>
+<blockquote>
+    <p>&gt;  <i>$price AMC</i></p>
+    <img align="left" src=".github/assets/stonkmaster-avatar.png" alt="stonkmaster avatar">
+        <p><b>Stonk Master</b></p>
+        The market price of <b>AMC Entertainment Holdings, Inc. (AMC)</b> is <b>65.40$</b> (+104.12%)
+</blockquote>
 
 ### $shorts \<symbol\>
 
 Provides currently known information on how heavily the stonk is shorted.
 
-Example:
-<pre>
-> $shorts GME
-Currently <b>11,972,632</b> shares of <b>GameStop Corp. (GME)</b> are shorted. This corresponds to <b>29.34%</b> of available shares.
-</pre>
+<blockquote>
+    <p>&gt;  <i>$shorts GME</i></p>
+    <img align="left" src=".github/assets/stonkmaster-avatar.png" alt="stonkmaster avatar">
+        <p><b>Stonk Master</b></p>
+        Currently <b>11,972,632</b> shares of <b>GameStop Corp. (GME)</b> are shorted. This corresponds to <b>29.34%</b> of available shares.
+</blockquote>
 
 ### $chart \<symbol\>
 
 Generates a chart showing the price development of the share in the last months.
 
-Example:
-<pre>
-> $chart GME
-
-<img src=https://github.com/d-stoll/the-stonk-master/blob/master/img/GME_chart.png width="50%" alt="look at the GME chart yourself"/>
-</pre>
-
-
----
+<blockquote>
+    <p>&gt;  <i>$price AMC</i></p>
+    <img align="left" src=".github/assets/stonkmaster-avatar.png" alt="stonkmaster avatar">
+        <p><b>Stonk Master</b></p>
+        <img src=".github/assets/gme-chart.png" width="50%" alt="look at the GME chart yourself"/>
+</blockquote>
 
