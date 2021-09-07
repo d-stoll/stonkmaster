@@ -14,7 +14,8 @@ class WatchCommand(commands.Cog,
     def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
         self.bot = bot
         self.config = config
-        self.current_ticker = None
+        self.current_ticker = "GME"
+        self.update_status.start()
 
     @commands.command(name="watch")
     async def _watch(self, ctx, ticker):
@@ -28,9 +29,10 @@ class WatchCommand(commands.Cog,
                 return
 
             if 'longName' in info:
-                msg = f"Alright, i'm watching **{info['longName']} ({info['symbol']})** now."
+                msg = f"Alright, i'm watching **{info['longName']} ({info['symbol']})** now. " + \
+                      self.config['emojis']['Eyes']
             else:
-                msg = f"Alright, i'm watching **{info['symbol']}** now."
+                msg = f"Alright, i'm watching **{info['symbol']}** now. {self.config['emojis']['Eyes']}"
 
             logging.info(f"{ctx.author.display_name} set watched ticker to {info['symbol']}")
             self.current_ticker = info['symbol']
