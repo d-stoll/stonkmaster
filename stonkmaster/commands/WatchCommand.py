@@ -49,3 +49,7 @@ class WatchCommand(commands.Cog,
         await self.bot.change_presence(
             activity=discord.Activity(type=discord.ActivityType.watching,
                                       name=f"{self.current_ticker}: {round(price, 2)}$ ({'{0:+.2f}'.format(change)}%)"))
+
+    @update_status.before_loop
+    async def wait_until_ready(self):
+        await self.bot.wait_until_ready()
