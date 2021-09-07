@@ -45,9 +45,9 @@ class PriceCommand(commands.Cog,
             if is_market_closed():
                 await ctx.send(f"Market is currently **closed** {self.config['emojis']['Closed']}")
             elif symbol == 'GME':
-                await ctx.send(f"Wennst ned woasd, wannst GME vakaffa wuisd, kosd de do orientiern: " +
+                await ctx.send("Wennst ned woasd, wannst GME vakaffa wuisd, kosd de do orientiern: " +
                                f"<https://gmefloor.com/> {self.config['emojis']['Money']}")
-                await ctx.send(f"Weitere Infos findst do: <https://gme.crazyawesomecompany.com/> " +
+                await ctx.send("Weitere Infos findst do: <https://gme.crazyawesomecompany.com/> " +
                                f"{self.config['emojis']['Bulb']}")
 
         except Exception as ex:
