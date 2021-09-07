@@ -31,14 +31,21 @@ Provides currently known information on how heavily the stonk is shorted.
         Currently <b>11,972,632</b> shares of <b>GameStop Corp. (GME)</b> are shorted. This corresponds to <b>29.34%</b> of available shares.
 </blockquote>
 
-### $chart \<symbol\>
+### $chart \<symbol\> \<range\>
 
-Generates a chart showing the price development of the share in the last months.
+Generates a chart showing the price development of the ticker over. The range can be specified 
+in days (d), months (m) or years (y).
 
 <blockquote>
-    <p>&gt;  <i>$price AMC</i></p>
-    <img align="left" src=".github/assets/stonkmaster-avatar.png" alt="stonkmaster avatar">
-        <b>Stonk Master</b><br />
-        <img src=".github/assets/gme-chart.png" width="50%" alt="look at the GME chart yourself"/>
+    <img align="left" src=".github/assets/tsla_chart.png" alt="TSLA CHART">
 </blockquote>
+
+### $sec \<symbol\> \<filing-type\>
+
+Fetches the latest SEC company filings from EDGAR.
+
+<blockquote>
+    <img align="left" src=".github/assets/amc_sec.png" alt="AMC SEC">
+</blockquote>
+
 
