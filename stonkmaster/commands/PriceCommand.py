@@ -1,7 +1,6 @@
 import configparser
 import logging
 
-import discord
 import yfinance as yf
 from discord.ext import commands
 
@@ -46,8 +45,10 @@ class PriceCommand(commands.Cog,
             if is_market_closed():
                 await ctx.send(f"Market is currently **closed** {self.config['emojis']['Closed']}")
             elif symbol == 'GME':
-                await ctx.send(f"Wennst ned woasd, wannst GME vakaffa wuisd, kosd de do orientiern: <https://gmefloor.com/> {self.config['emojis']['Money']}")
-                await ctx.send(f"Weitere Infos findst do: <https://gme.crazyawesomecompany.com/> {self.config['emojis']['Bulb']}")
+                await ctx.send(f"Wennst ned woasd, wannst GME vakaffa wuisd, kosd de do orientiern: " +
+                               f"<https://gmefloor.com/> {self.config['emojis']['Money']}")
+                await ctx.send(f"Weitere Infos findst do: <https://gme.crazyawesomecompany.com/> " +
+                               f"{self.config['emojis']['Bulb']}")
 
         except Exception as ex:
             logging.error(ex)

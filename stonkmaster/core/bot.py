@@ -1,4 +1,3 @@
-import argparse
 import configparser
 
 from discord.ext import commands
