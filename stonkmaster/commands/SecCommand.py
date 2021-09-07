@@ -45,5 +45,5 @@ class SecCommand(commands.Cog, name="SEC", description="Fetches the latest SEC c
             await ctx.send(embed=filings_embed)
 
         except Exception as ex:
-            logging.error(ex)
+            logging.exception(f"Exception in SecCommand: {ex}")
             await ctx.send(f"Do hod wos ned bassd, I bin raus. {self.config['emojis']['Error']}")

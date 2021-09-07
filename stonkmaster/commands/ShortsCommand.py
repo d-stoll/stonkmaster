@@ -47,5 +47,5 @@ class ShortsCommand(commands.Cog,
                 await ctx.send(f"Real SI may be much higher -> Hedgies are fucked. {self.config['emojis']['Kennyg']}")
 
         except Exception as ex:
-            logging.error(ex)
+            logging.exception(f"Exception in ShortsCommand: {ex}")
             await ctx.send(f"Do hod wos ned bassd, I bin raus. {self.config['emojis']['Error']}")

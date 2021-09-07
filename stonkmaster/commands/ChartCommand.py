@@ -79,7 +79,11 @@ class ChartCommand(commands.Cog,
                                                          low=ticker_data['Low'],
                                                          close=ticker_data['Close'])])
 
-            chart_title = f"{info['longName']} ({info['symbol']})"
+            if 'longName' in info:
+                chart_title = f"{info['longName']} ({info['symbol']})"
+            else:
+                chart_title = info['symbol']
+
             candlestick.update_layout(xaxis_rangeslider_visible=False, title=chart_title)
             candlestick.update_yaxes(tickprefix='$')
 
@@ -91,5 +95,5 @@ class ChartCommand(commands.Cog,
             await ctx.send(f"Fia an bessern Graph schaust moi do vorbei: <https://finance.yahoo.com/chart/{info['symbol']}/>")
 
         except Exception as ex:
-            logging.error(ex)
+            logging.exception(f"Exception in ChartCommand: {ex}")
             await ctx.send(f"Do hod wos ned bassd, I bin raus. {self.config['emojis']['Error']}")

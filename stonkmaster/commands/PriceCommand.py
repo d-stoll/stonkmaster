@@ -51,5 +51,5 @@ class PriceCommand(commands.Cog,
                                f"{self.config['emojis']['Bulb']}")
 
         except Exception as ex:
-            logging.error(ex)
+            logging.exception(f"Exception in PriceCommand: {ex}")
             await ctx.send(f"Do hod wos ned bassd, I bin raus. {self.config['emojis']['Error']}")
