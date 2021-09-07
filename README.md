@@ -42,6 +42,43 @@ The Stonk Master is a Discord bot for fellow apes to monitor stonks without leav
 
 ## Installation
 
+The installation is only tested on Ubuntu 20.04 LTS, however other operating systems should also work without any problem. Just make sure that all dependencies are completly installed.
+
+Make sure Python 3.8 or higher, pip and setuptools are installed on your system.
+
+```{bash}
+$ python --version # This should return 3.8.10 or higher
+$ python -m pip install --upgrade pip
+$ pip install --upgrade setuptools
+```
+
+Now clone the repository.
+
+```{bash}
+$ git clone git@github.com:d-stoll/stonkmaster.git
+$ cd stonkmaster
+```
+
+And install all dependencies and the executable.
+
+```{bash}
+$ pip install .
+```
+
+(Optional) You can create your own configuration file to customize emotes and texts.
+
+```{bash}
+$ cp default.ini custom.ini
+$ vim custom.ini
+```
+
+To run the bot, obtain you personal discord token and run the stonkmaster executable.
+
+```{bash}
+$ export DISCORD_TOKEN=<YOUR_PERSONAL_DISCORD_TOKEN>
+$ stonkmaster
+```
+
 ## Commands
 
 ### $price \<symbol\>
