@@ -47,9 +47,7 @@ The installation is only tested on Ubuntu 20.04 LTS, however other operating sys
 Make sure Python 3.8 or higher, pip and setuptools are installed on your system.
 
 ```{bash}
-$ python --version # This should return 3.8.10 or higher
-$ python -m pip install --upgrade pip
-$ pip install --upgrade setuptools
+$ python -m pip install --upgrade pip setuptools
 ```
 
 Now clone the repository.
