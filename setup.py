@@ -25,7 +25,6 @@ setup(
         'holidays>=0.11.2',
         'plotly>=5.3.1',
         'pandas>=1.3.2',
-        'pandas-datareader>=0.10.0',
         'secedgar==0.4.0a2',
         'kaleido==0.2.1'
     ],
