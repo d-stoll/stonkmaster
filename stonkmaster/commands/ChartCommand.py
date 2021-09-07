@@ -1,5 +1,7 @@
 import configparser
 import datetime as dt
+import logging
+
 import discord
 import pandas_datareader.data as web
 import plotly.graph_objects as go
@@ -7,13 +9,14 @@ import yfinance as yf
 from discord.ext import commands
 
 
-class ChartCommand(commands.Cog):
+class ChartCommand(commands.Cog,
+                   name="Chart",
+                   description="Generates a chart showing the price development of the share in the last months."):
     def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
         self.bot = bot
         self.config = config
 
-    @commands.command(name="chart",
-                      description="Generates a chart showing the price development of the share in the last months.")
+    @commands.command(name="chart")
     async def _chart(self, ctx, ticker):
         try:
             yf_ticker = yf.Ticker(ticker)
@@ -45,5 +48,5 @@ class ChartCommand(commands.Cog):
             await ctx.send(f"Fia an bessern Graph schaust moi do vorbei: <https://finance.yahoo.com/chart/{info['symbol']}/>")
 
         except Exception as ex:
-            print(ex)
+            logging.error(ex)
             await ctx.send(f"Do hod wos ned bassd, I bin raus. {self.config['emojis']['Error']}")

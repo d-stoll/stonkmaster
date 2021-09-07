@@ -1,33 +1,31 @@
 import configparser
+import logging
 
 import yfinance as yf
 from discord.ext import commands
 
 
-class ShortsCommand(commands.Cog):
+class ShortsCommand(commands.Cog,
+                    name="Shorts",
+                    description="Provides currently known information on how heavily the stonk is shorted."):
     def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
         self.bot = bot
         self.config = config
-        self.emoji_no_short = "<:GanslSuffkoma:819901005193019392>"
-        self.emoji_not_found = "<:ThomasPassAuf:788838985878994964>"
-        self.emoji_error = ":flag_white:"
-        self.emoji_kennyg = "<:kennyg:852146613220933653>"
 
-    @commands.command(name="shorts",
-                      description="Provides currently known information on how heavily the stonk is shorted.")
+    @commands.command(name="shorts")
     async def _shorts(self, ctx, ticker):
         try:
             yf_ticker = yf.Ticker(ticker)
             info = yf_ticker.info
 
             if len(info) <= 1:
-                await ctx.send(f"{ticker.upper()} gibt's ned oida! {self.emoji_not_found}")
+                await ctx.send(f"{ticker.upper()} gibt's ned oida! {self.config['emojis']['NotFound']}")
                 return
 
             symbol = info['symbol']
 
             if 'sharesShort' not in info or 'shortPercentOfFloat' not in info:
-                await ctx.send(f"{symbol} ko ned geshorted werdn, du Hosnbiesla! {self.emoji_no_short}")
+                await ctx.send(f"{symbol} ko ned geshorted werdn, du Hosnbiesla! {self.config['emojis']['NoShort']}")
                 return
 
             shares_short = info['sharesShort']
@@ -46,8 +44,8 @@ class ShortsCommand(commands.Cog):
             await ctx.send(msg)
 
             if symbol == 'GME' or symbol == 'AMC':
-                await ctx.send(f"Real SI may be much higher -> Hedgies are fucked. {self.emoji_kennyg}")
+                await ctx.send(f"Real SI may be much higher -> Hedgies are fucked. {self.config['emojis']['Kennyg']}")
 
         except Exception as ex:
-            print(ex)
-            await ctx.send(f"Do hod wos ned bassd, I bin raus. {self.emoji_error}")
+            logging.error(ex)
+            await ctx.send(f"Do hod wos ned bassd, I bin raus. {self.config['emojis']['Error']}")

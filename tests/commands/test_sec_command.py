@@ -1,15 +1,16 @@
+from time import sleep
+
+import discord.ext.commands
+import discord.ext.test as dpytest
 import pytest
 
-from stonkmaster.commands.SecCommand import SecCommand
-from tests.utils import DiscordContextMock
+from tests.assertions import discord_message_equals
 
 
 @pytest.mark.asyncio
-async def test_sec_gme():
-    discord_ctx = DiscordContextMock()
-    sec_cmd = SecCommand()
+async def test_sec_gme(bot: discord.ext.commands.Bot):
+    await dpytest.message("$sec GME 8-k")
 
-    await sec_cmd.run(ctx=discord_ctx, ticker='gme', type="8-k")
-
-    assert len(discord_ctx.messages) > 0
-    assert len(discord_ctx.embeds) > 0
+    assert discord_message_equals("**Searching EDGAR database... :mag_right:**")
+    sleep(5)
+    assert dpytest.get_embed() is not None
