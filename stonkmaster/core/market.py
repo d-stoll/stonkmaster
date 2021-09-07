@@ -11,7 +11,7 @@ def get_price_and_change(symbol: str):
 
     current = info['regularMarketPrice']
     previous = info['previousClose']
-    change = round(((current - previous) / previous) * 100, 2)
+    change = ((current - previous) / previous) * 100
 
     return current, change
 

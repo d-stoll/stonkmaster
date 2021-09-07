@@ -44,5 +44,6 @@ class WatchCommand(commands.Cog,
     @tasks.loop(seconds=10.0)
     async def update_status(self):
         price, change = get_price_and_change(self.current_ticker)
-        await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,
-                                                                 name=f"{self.current_ticker}: {price} ({change}%)"))
+        await self.bot.change_presence(
+            activity=discord.Activity(type=discord.ActivityType.watching,
+                                      name=f"{self.current_ticker}: {round(price, 2)}$ ({'{0:+.2f}'.format(change)}%)"))
