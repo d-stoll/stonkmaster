@@ -6,12 +6,14 @@ import urllib.parse
 
 import discord
 import plotly.graph_objects as go
+import plotly.io as pio
 import pandas as pd
 import requests
 import yfinance as yf
 from discord.ext import commands
 
 yf.pdr_override()
+pio.templates.default = 'plotly_dark'
 
 
 def datetime_to_timestamp(datetime):
