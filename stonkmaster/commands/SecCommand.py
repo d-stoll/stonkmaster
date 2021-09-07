@@ -4,7 +4,7 @@ import logging
 import discord
 import yfinance as yf
 from discord.ext import commands
-from secedgar.filings import Filing, FilingType
+from secedgar import filings, FilingType
 
 
 class SecCommand(commands.Cog, name="SEC", description="Fetches the latest SEC company filings from EDGAR."):
@@ -13,10 +13,10 @@ class SecCommand(commands.Cog, name="SEC", description="Fetches the latest SEC c
         self.config = config
 
     @commands.command(name="sec")
-    async def _sec(self, ctx, ticker, type):
+    async def _sec(self, ctx: commands.Context, ticker: str, type: str):
         try:
             yf_ticker = yf.Ticker(ticker)
-            type = type.lower()
+            type = type.upper()
             info = yf_ticker.info
 
             if len(info) <= 1:
@@ -26,7 +26,8 @@ class SecCommand(commands.Cog, name="SEC", description="Fetches the latest SEC c
 
             logging.info(f"{ctx.author.display_name} requests sec filings of type '{type}' for ticker '{ticker}'")
             await ctx.send(f"**Searching EDGAR database... {self.config['emojis']['Search']}**")
-            sec_filings = Filing(cik_lookup=yf_ticker.info['symbol'].lower(), filing_type=FilingType(type))
+            sec_filings = filings(cik_lookup=yf_ticker.info['symbol'].lower(), filing_type=FilingType(type),
+                                  user_agent="Daniel Stoll (daniel@stoll.cloud)")
 
             filings_embed = discord.Embed(
                 title=f"Latest SEC filings of {yf_ticker.info['longName']} ({yf_ticker.info['symbol']})",
