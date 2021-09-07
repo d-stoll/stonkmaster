@@ -24,6 +24,7 @@ setup(
         'holidays',
         'plotly',
         'pandas',
+        'pandas-datareader',
         'secedgar'
     ],
 
