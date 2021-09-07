@@ -2,4 +2,6 @@ venv
 .idea
 build
 dist
+.eggs
+.pytest_cache
 stonkmaster.egg-info

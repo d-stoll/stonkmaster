@@ -19,6 +19,7 @@ setup(
 
     python_requires='>=3.7, <4',
     install_requires=[
+        'aiohttp==3.7.4.post0',
         'yfinance>=0.1.63',
         'discord.py>=1.7.3',
         'holidays>=0.11.2',
