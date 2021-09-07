@@ -1,7 +1,7 @@
 import discord.ext.test as dpytest
 import pytest
 
-from stonkmaster.util.market_utils import is_market_closed
+from stonkmaster.core.market import is_market_closed
 from tests.assertions import discord_message_matches, discord_message_equals
 
 
