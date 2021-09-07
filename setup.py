@@ -19,13 +19,23 @@ setup(
 
     python_requires='>=3.7, <4',
     install_requires=[
-        'yfinance',
-        'discord.py',
-        'holidays',
-        'plotly',
-        'pandas',
-        'pandas-datareader',
-        'secedgar'
+        'yfinance>=0.1.63',
+        'discord.py>=1.7.3',
+        'holidays>=0.11.2',
+        'plotly>=5.3.1',
+        'pandas>=1.3.2',
+        'pandas-datareader>=0.10.0',
+        'secedgar>=0.3.3'
+    ],
+
+    setup_requires=[
+        'pytest-runner>=5.3.1',
+        'flake8>=3.9.2'
+    ],
+
+    tests_require=[
+        'pytest>=6.2.5',
+        'dpytest>=0.5.3'
     ],
 
     entry_points='''
