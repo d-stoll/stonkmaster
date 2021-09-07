@@ -1,6 +1,19 @@
 import datetime
+
 import holidays
 import pytz
+import yfinance as yf
+
+
+def get_price_and_change(symbol: str):
+    yf_ticker = yf.Ticker(symbol)
+    info = yf_ticker.info
+
+    current = info['regularMarketPrice']
+    previous = info['previousClose']
+    change = round(((current - previous) / previous) * 100, 2)
+
+    return current, change
 
 
 def is_market_closed(now=None):  # credits @Reddit u/numbuh-0

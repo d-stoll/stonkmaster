@@ -4,7 +4,7 @@ import logging
 import yfinance as yf
 from discord.ext import commands
 
-from stonkmaster.util.market_utils import is_market_closed
+from stonkmaster.core.market import is_market_closed
 
 
 class PriceCommand(commands.Cog,
