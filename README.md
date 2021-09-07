@@ -72,11 +72,11 @@ $ cp default.ini custom.ini
 $ vim custom.ini
 ```
 
-To run the bot, obtain you personal discord token and run the stonkmaster executable.
+To run the bot, obtain you personal discord token and run the stonkmaster executable (with your own configuration if you created one).
 
 ```{bash}
 $ export DISCORD_TOKEN=<YOUR_PERSONAL_DISCORD_TOKEN>
-$ stonkmaster
+$ stonkmaster --config custom.ini
 ```
 
 ## Commands
