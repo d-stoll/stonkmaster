@@ -44,7 +44,7 @@ class WatchCommand(commands.Cog,
             logging.exception(f"Exception in WatchCommand: {ex}")
             await ctx.send(f"Do hod wos ned bassd, I bin raus. {self.config['emojis']['Error']}")
 
-    @tasks.loop(seconds=10.0)
+    @tasks.loop(seconds=15.0)
     async def update_status(self):
         price, change = get_price_and_change(self.current_ticker)
         await self.bot.change_presence(
