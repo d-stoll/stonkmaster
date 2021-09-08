@@ -52,7 +52,12 @@ class WatchCommand(commands.Cog,
 
         bot_member = self.bot.guilds[0].get_member(self.bot.user.id)
         for role in bot_member.roles:
-            logging.warning(f"{role.id}: {role.name}")
+            if role.name == "@everyone":
+                pass
+            else:
+                color = discord.Color.green() if change >= 0 else discord.Color.red()
+                await role.edit(color=color)
+                break
 
     @update_status.before_loop
     async def wait_until_ready(self):
