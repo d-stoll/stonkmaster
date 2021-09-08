@@ -4,7 +4,6 @@ import logging
 import re
 
 import discord
-import pandas as pd
 import plotly.graph_objects as go
 import plotly.io as pio
 import yfinance as yf
