@@ -61,5 +61,5 @@ class WatchCommand(commands.Cog,
         for guild in self.bot.guilds:
             color_role = discord.utils.get(guild.roles, name="Stonkmaster")
             if color_role is None:
-                color_role = await guild.create_role(name = "Stonkmaster")
+                color_role = await guild.create_role(name="Stonkmaster")
             self.color_roles += [color_role]
