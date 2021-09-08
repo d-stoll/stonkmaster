@@ -51,10 +51,7 @@ class WatchCommand(commands.Cog,
                                       name=f"{self.current_ticker}: {round(price, 2)}$ ({'{0:+.2f}'.format(change)}%)"))
 
         bot_member = self.bot.guilds[0].get_member(self.bot.user.id)
-        if len(bot_member.roles) >= 3:
-            role_to_edit = bot_member.roles[-2]
-            color = discord.Color.green() if change >= 0 else discord.Color.red()
-            await role_to_edit.edit(color=color)
+        logging.warning(map(lambda x: f"{x.id}: {x.name}", bot_member.roles))
 
     @update_status.before_loop
     async def wait_until_ready(self):
