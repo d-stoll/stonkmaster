@@ -15,6 +15,7 @@ class WatchCommand(commands.Cog,
         self.bot = bot
         self.config = config
         self.current_ticker = "GME"
+        self.color_roles = []
         self.update_status.start()
 
     @commands.command(name="watch")
@@ -50,15 +51,15 @@ class WatchCommand(commands.Cog,
             activity=discord.Activity(type=discord.ActivityType.watching,
                                       name=f"{self.current_ticker}: {round(price, 2)}$ ({'{0:+.2f}'.format(change)}%)"))
 
-        bot_member = self.bot.guilds[0].get_member(self.bot.user.id)
-        for role in bot_member.roles:
-            if role.name == "@everyone":
-                pass
-            else:
-                color = discord.Color.green() if change >= 0 else discord.Color.red()
-                await role.edit(color=color)
-                break
+        for role in self.color_roles:
+            color = discord.Color.green() if change >= 0 else discord.Color.red()
+            await role.edit(color=color)
 
     @update_status.before_loop
     async def wait_until_ready(self):
         await self.bot.wait_until_ready()
+        for guild in self.bot.guilds:
+            color_role = discord.utils.get(guild.roles, name="Stonkmaster")
+            if color_role is None:
+                color_role = await guild.create_role(name = "Stonkmaster")
+            self.color_roles += [color_role]
