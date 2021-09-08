@@ -4,6 +4,7 @@ import logging
 import re
 
 import discord
+import pandas as pd
 import plotly.graph_objects as go
 import plotly.io as pio
 import yfinance as yf
@@ -64,7 +65,8 @@ class ChartCommand(commands.Cog,
             else:
                 interval = "5m"
 
-            ticker_data = yf.download([symbol], group_by="ticker", start=start, end=end, interval=interval)
+            ticker_data = yf.download([symbol], group_by="Ticker", start=start, end=end, interval=interval)
+
             candlestick = go.Figure(data=[go.Candlestick(x=ticker_data.index,
                                                          open=ticker_data['Open'],
                                                          high=ticker_data['High'],
@@ -76,13 +78,14 @@ class ChartCommand(commands.Cog,
             else:
                 chart_title = info['symbol']
 
+            rangebreaks = [dict(bounds=["sat", "mon"])]
+            if interval != "1d":
+                rangebreaks += [dict(bounds=[16, 9.5], pattern="hour")]
+
             candlestick.update_layout(title=chart_title)
             candlestick.update_xaxes(
                 rangeslider_visible=False,
-                rangebreaks=[
-                    dict(bounds=["sat", "mon"]),
-                    dict(bounds=[16, 9.5], pattern="hour")
-                ]
+                rangebreaks=rangebreaks
             )
             candlestick.update_yaxes(tickprefix='$')
 
