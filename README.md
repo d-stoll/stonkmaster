@@ -42,7 +42,7 @@ The Stonk Master is a Discord bot for fellow apes to monitor stonks without leav
 
 ## Installation
 
-The installation is only tested on Ubuntu 20.04 LTS, however other operating systems should also work without any problem. Just make sure that all dependencies are completly installed.
+The installation is only tested on Ubuntu 20.04 LTS, however other operating systems should also work without any problem.
 
 Make sure Python 3.8 or higher, pip and setuptools are installed on your system.
 
@@ -89,7 +89,14 @@ The main functionality of the bot is to query data from financial APIs and make 
 - `$sec [ticker] [filing-type]` -> Fetches the latest SEC company filings from EDGAR.
 - `$watch [ticker]` -> Displays the price and change of a ticker in the bot status.
 
-This list of commands is continuously being expanded. If you find bugs or want to suggest improvements, do not hesitate to make a pull request.
+In future releases we also plan to implement the following commands:
+
+- `$options [ticker]` -> Displays options and their greeks of a specified ticker.
+- `$config [key] [value]` -> Changes the configuration of the bot (for example the emotes).
+- `$watchlist [ticker]` -> Adds a ticker to your personal watchlist. The bot will inform you about movements in your stocks.
+- `$wiki [keyword]` -> Searches investopedia for a definition of the keyword.
+
+The list of commands is continuously being expanded. If you find bugs or want to suggest improvements, do not hesitate to make a pull request.
 
 ## Configuration
 
