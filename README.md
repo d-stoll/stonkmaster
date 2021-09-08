@@ -29,7 +29,7 @@
   •
   <a href="#installation">Installation</a>
   •
-  <a href="#commands">Commands</a>
+  <a href="#features">Features</a>
   •
   <a href="#configuration">Configuration</a>
   •
@@ -42,7 +42,7 @@ The Stonk Master is a Discord bot for fellow apes to monitor stonks without leav
 
 ## Installation
 
-The installation is only tested on Ubuntu 20.04 LTS, however other operating systems should also work without any problem. Just make sure that all dependencies are completly installed.
+The installation is only tested on Ubuntu 20.04 LTS, however other operating systems should also work without any problem.
 
 Make sure Python 3.8 or higher, pip and setuptools are installed on your system.
 
@@ -77,45 +77,35 @@ $ export DISCORD_TOKEN=<YOUR_PERSONAL_DISCORD_TOKEN>
 $ stonkmaster --config custom.ini
 ```
 
-## Commands
+## Features
 
-### $price \<symbol\>
+The main functionality of the bot is to query data from financial APIs and make it quickly accessible to users via a simple interface. For this purpose, we have developed a collection of commands that you can use.
 
-Shows the current price of the stonk, as well as its daily change.
+### Commands
 
-<blockquote>
-    <p>&gt;  <i>$price AMC</i></p>
-    <img align="left" src=".github/assets/stonkmaster-avatar.png" alt="stonkmaster avatar">
-        <b>Stonk Master</b><br />
-        The market price of <b>AMC Entertainment Holdings, Inc. (AMC)</b> is <b>65.40$</b> (+104.12%)
-</blockquote>
+- `$price [ticker]` -> Shows the current price of the stonk, as well as its daily change.
+- `$shorts [ticker]` -> Provides currently known information on how heavily the stonk is shorted.
+- `$chart [ticker] [range]` -> Generates a chart showing the price development of the ticker over. The range can be specified in days (d), months (m) or years (y).
+- `$sec [ticker] [filing-type]` -> Fetches the latest SEC company filings from EDGAR.
+- `$watch [ticker]` -> Displays the price and change of a ticker in the bot status.
 
-### $shorts \<symbol\>
+In future releases we also plan to implement the following commands:
 
-Provides currently known information on how heavily the stonk is shorted.
+- `$options [ticker]` -> Displays options and their greeks of a specified ticker.
+- `$config [key] [value]` -> Changes the configuration of the bot (for example the emotes).
+- `$watchlist [ticker]` -> Adds a ticker to your personal watchlist. The bot will inform you about movements in your stocks.
+- `$wiki [keyword]` -> Searches investopedia for a definition of the keyword.
 
-<blockquote>
-    <p>&gt;  <i>$shorts GME</i></p>
-    <img align="left" src=".github/assets/stonkmaster-avatar.png" alt="stonkmaster avatar">
-        <b>Stonk Master</b><br />
-        Currently <b>11,972,632</b> shares of <b>GameStop Corp. (GME)</b> are shorted. This corresponds to <b>29.34%</b> of available shares.
-</blockquote>
-
-
-### $chart \<symbol\> \<range\>
-
-Generates a chart showing the price development of the ticker over. The range can be specified 
-in days (d), months (m) or years (y).
-
-![Tesla Chart (2 years)](.github/assets/tsla_chart.png)
-
-
-### $sec \<symbol\> \<filing-type\>
-
-Fetches the latest SEC company filings from EDGAR.
-
-![AMC sec filings (8-k)](.github/assets/amc_sec.png)
+The list of commands is continuously being expanded. If you find bugs or want to suggest improvements, do not hesitate to make a pull request.
 
 ## Configuration
 
+tbd.
+
 ## License
+
+Licensed under the Apache License, Version 2.0 (the "License"); You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
