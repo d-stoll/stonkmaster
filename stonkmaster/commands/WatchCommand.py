@@ -53,7 +53,8 @@ class WatchCommand(commands.Cog,
 
         for role in self.color_roles:
             color = discord.Color.green() if change >= 0 else discord.Color.red()
-            await role.edit(color=color)
+            if role.color != color:
+                await role.edit(color=color)
 
     @update_status.before_loop
     async def wait_until_ready(self):
