@@ -51,7 +51,8 @@ class WatchCommand(commands.Cog,
                                       name=f"{self.current_ticker}: {round(price, 2)}$ ({'{0:+.2f}'.format(change)}%)"))
 
         bot_member = self.bot.guilds[0].get_member(self.bot.user.id)
-        logging.warning(map(lambda x: f"{x.id}: {x.name}", bot_member.roles))
+        for role in bot_member.roles:
+            logging.warning(f"{role.id}: {role.name}")
 
     @update_status.before_loop
     async def wait_until_ready(self):
