@@ -47,7 +47,7 @@ def intraday(symbol: str, interval: str, days: int):
     assert days < 60
 
     if days == 1:
-        df = yf.Ticker(symbol).history(period="1d", interval="1m", tz="Europe/Berlin")
+        df = yf.Ticker(symbol).history(period="1d", interval="1m")
         df = df.rename(columns={
             "Open": "open",
             "High": "high",
