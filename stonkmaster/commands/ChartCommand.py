@@ -1,6 +1,7 @@
 import configparser
 import datetime as dt
 import logging
+import os
 import re
 
 import discord
@@ -27,11 +28,17 @@ class ChartCommand(commands.Cog,
             years_pattern = re.compile("[0-9]+y")
 
             if days_pattern.match(range):
-                diff = dt.timedelta(days=int(range.removesuffix('d')))
+                days = int(range.removesuffix('d'))
+                diff = dt.timedelta(days=days)
+                range_str = f"{days} day" + "s" if days > 1 else ""
             elif months_pattern.match(range):
-                diff = dt.timedelta(days=int(range.removesuffix('m')) * 30)
+                months = int(range.removesuffix('m'))
+                diff = dt.timedelta(days=months * 30)
+                range_str = f"{months} month" + "s" if months > 1 else ""
             elif years_pattern.match(range):
-                diff = dt.timedelta(days=int(range.removesuffix('y')) * 365)
+                years = int(range.removesuffix('y'))
+                diff = dt.timedelta(days=years * 365)
+                range_str = f"{years} year" + "s" if years > 1 else ""
             else:
                 logging.info(f"{ctx.author.display_name} tried to generate graph with invalid range {range}")
                 await ctx.send("The time range must be specified in days (d), months (m) or years (m). " +
@@ -47,6 +54,9 @@ class ChartCommand(commands.Cog,
                 return
 
             symbol = info['symbol']
+
+            await ctx.send(f"**Generating chart of {symbol} for the last {range_str}... " +
+                           f"{self.config['emojis']['Chart']}**")
 
             end = dt.datetime.now()
             start = end - diff
@@ -88,12 +98,13 @@ class ChartCommand(commands.Cog,
             )
             candlestick.update_yaxes(tickprefix='$')
 
-            candlestick.write_image(f"{self.config['stonkmaster']['TmpFolder']}/{info['symbol']}-{range}.png")
-            with open(f"{self.config['stonkmaster']['TmpFolder']}/{info['symbol']}-{range}.png", 'rb') as f:
+            path = f"{self.config['stonkmaster']['TmpFolder']}/{info['symbol']}-{range}.png"
+            candlestick.write_image(path)
+            with open(path, 'rb') as f:
                 picture = discord.File(f)
                 await ctx.send(file=picture)
 
-            await ctx.send(f"Fia an bessern Graph schaust moi do vorbei: <https://finance.yahoo.com/chart/{info['symbol']}/>")
+            os.remove(path)
 
         except Exception as ex:
             logging.exception(f"Exception in ChartCommand: {ex}")
