@@ -61,16 +61,16 @@ class ChartCommand(commands.Cog,
             end = dt.datetime.now()
             start = end - diff
 
-            if diff.days > 60:
-                interval = "1d"
-            elif diff.days > 14:
+            if diff.days < 14:
                 interval = "60m"
-            elif diff.days > 7:
+            elif diff.days < 7:
                 interval = "30m"
-            elif diff.days > 3:
+            elif diff.days < 3:
                 interval = "15m"
-            else:
+            elif diff.days < 3:
                 interval = "5m"
+            else:
+                interval = "1d"
 
             ticker_data = yf.download([symbol], group_by="Ticker", start=start, end=end, interval=interval,
                                       threads=False, prepost=False, rounding=True)
