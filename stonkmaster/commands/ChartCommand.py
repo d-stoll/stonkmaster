@@ -64,9 +64,9 @@ class ChartCommand(commands.Cog,
             if diff.days > 30:
                 interval = "1d"
             elif diff.days > 7:
-                interval = "1h"
+                interval = "60m"
             else:
-                interval = "5m"
+                interval = "15m"
 
             ticker_data = yf.download([symbol], group_by="Ticker", start=start, end=end, interval=interval,
                                       threads=False, prepost=False, rounding=False, progress=False)
@@ -83,8 +83,8 @@ class ChartCommand(commands.Cog,
                 chart_title = info['symbol']
 
             rangebreaks = [dict(bounds=["sat", "mon"])]
-            if interval != "1d":
-                rangebreaks += [dict(bounds=[16, 9.5], pattern="hour")]
+            if ticker_data.index.name == "Datetime":
+                rangebreaks += [dict(bounds=[15.5, 22], pattern="hour")]
 
             candlestick.update_layout(title=chart_title)
             candlestick.update_xaxes(
