@@ -12,6 +12,8 @@ import pandas as pd
 from discord.ext import commands
 from pytz import timezone
 
+from stonkmaster.core.market import daily, intraday
+
 pio.templates.default = 'plotly_dark'
 
 
@@ -60,46 +62,42 @@ class ChartCommand(commands.Cog,
             await ctx.send(f"**Generating chart of {symbol} for the last {range_str}... " +
                            f"{self.config['emojis']['Chart']}**")
 
-            et = timezone('US/Eastern')
-            end = dt.datetime.now(et)
+            end = dt.datetime.now()
             start = end - diff
 
             if diff.days > 30:
-                interval = "1d"
-            elif diff.days > 7:
-                interval = "60m"
+                ticker_data = daily(symbol=symbol)
             else:
-                interval = "15m"
+                if diff.days > 14:
+                    interval = "60min"
+                elif diff.days > 7:
+                    interval = "30min"
+                elif diff.days > 3:
+                    interval = "15min"
+                else:
+                    interval = "5min"
+                ticker_data = intraday(symbol=symbol, interval=interval, days=diff.days)
 
-            ticker_data = yf.download([symbol], group_by="Ticker", start=start, end=end, interval=interval,
-                                      threads=False, prepost=False, rounding=False, progress=False)
-
-            td_start, td_end = ticker_data.index[0], ticker_data.index[-1]
-
-            if interval[-1] == 'd':
-                freq = f"{interval[:-1]}D"
-            else:
-                freq = f"{interval[:-1]}min"
-
-            ticker_data = ticker_data.reindex(pd.date_range(td_start, td_end, freq=freq))
+            ticker_data = ticker_data.loc[start:end]
 
             candlestick = go.Figure(data=[go.Candlestick(x=ticker_data.index,
-                                                         open=ticker_data['Open'],
-                                                         high=ticker_data['High'],
-                                                         low=ticker_data['Low'],
-                                                         close=ticker_data['Close'])])
+                                                         open=ticker_data['open'],
+                                                         high=ticker_data['high'],
+                                                         low=ticker_data['low'],
+                                                         close=ticker_data['close'])])
 
             if 'longName' in info:
                 chart_title = f"{info['longName']} ({info['symbol']})"
             else:
                 chart_title = info['symbol']
 
-            # rangebreaks = [dict(bounds=["sat", "mon"])]
-            # if ticker_data.index.name == "Datetime":
-            #    rangebreaks += [dict(bounds=[16, 9.5], pattern="hour")]
+            rangebreaks = [
+                dict(bounds=["sat", "mon"]),
+                dict(bounds=[16, 9.5], pattern="hour")
+            ]
 
             candlestick.update_layout(title=chart_title)
-            candlestick.update_xaxes(rangeslider_visible=False)
+            candlestick.update_xaxes(rangeslider_visible=False, rangebreaks=rangebreaks)
             candlestick.update_yaxes(tickprefix='$')
 
             path = f"{self.config['stonkmaster']['TmpFolder']}/{info['symbol']}-{range}.png"

@@ -1,8 +1,14 @@
 import datetime
+import os
+import requests
+from io import StringIO
 
+import pandas
 import holidays
 import pytz
 import yfinance as yf
+
+alpha_vantage_base_url = "https://www.alphavantage.co/query"
 
 
 def get_price_and_change(symbol: str):
@@ -35,3 +41,65 @@ def is_market_closed(now=None):  # credits @Reddit u/numbuh-0
         return True
 
     return False
+
+
+def intraday(symbol: str, interval: str, days: int):
+    assert days < 60
+
+    if days == 1:
+        intraday_data = requests.get(alpha_vantage_base_url, params={
+            "function": "TIME_SERIES_INTRADAY",
+            "symbol": symbol.upper(),
+            "interval": interval,
+            "apikey": os.environ['ALPHA_VANTAGE_TOKEN']
+        }).json()
+
+        df = pandas.DataFrame.from_dict(intraday_data[f"Time Series ({interval})"], orient='index')
+        df.index = pandas.to_datetime(df.index)
+        df["open"] = df["1. open"]
+        df["high"] = df["2. high"]
+        df["low"] = df["3. low"]
+        df["close"] = df["4. close"]
+        return df
+    else:
+        month = 1
+        df = None
+
+        while days > 0:
+            monthly_intraday_data = requests.get(alpha_vantage_base_url, params={
+                "function": "TIME_SERIES_INTRADAY_EXTENDED",
+                "symbol": symbol.upper(),
+                "interval": interval,
+                "slice": f"year1month${month}",
+                "apikey": os.environ['ALPHA_VANTAGE_TOKEN']
+            }).content.decode("utf-8")
+
+            batch = pandas.read_csv(StringIO(monthly_intraday_data), sep=',')
+            batch.index = pandas.to_datetime(batch.index)
+
+            if df is None:
+                df = batch
+            else:
+                df.append(batch)
+
+            days -= 30
+            month += 1
+
+        return df
+
+
+def daily(symbol: str):
+    daily_data = requests.get(alpha_vantage_base_url, params={
+        "function": "TIME_SERIES_DAILY_ADJUSTED",
+        "symbol": symbol.upper(),
+        "outputsize": "full",
+        "apikey": os.environ['ALPHA_VANTAGE_TOKEN']
+    }).json()
+
+    df = pandas.DataFrame.from_dict(daily_data["Time Series (Daily)"], orient='index')
+    df.index = pandas.to_datetime(df.index)
+    df["open"] = df["1. open"]
+    df["high"] = df["2. high"]
+    df["low"] = df["3. low"]
+    df["close"] = df["4. close"]
+    return df
