@@ -7,6 +7,7 @@ import re
 import discord
 import plotly.graph_objects as go
 import plotly.io as pio
+import pytz
 import yfinance as yf
 from discord.ext import commands
 
@@ -60,7 +61,8 @@ class ChartCommand(commands.Cog,
             await ctx.send(f"**Generating chart of {symbol} for the last {range_str}... " +
                            f"{self.config['emojis']['Chart']}**")
 
-            end = dt.datetime.now()
+            tz = pytz.timezone("America/New_York")
+            end = dt.datetime.now(tz)
             start = end - diff
 
             if diff.days > 30:
