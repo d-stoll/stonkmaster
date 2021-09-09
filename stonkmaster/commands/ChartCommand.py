@@ -30,15 +30,15 @@ class ChartCommand(commands.Cog,
             if days_pattern.match(range):
                 days = int(range.removesuffix('d'))
                 diff = dt.timedelta(days=days)
-                range_str = f"{days} day" + "s" if days > 1 else ""
+                range_str = f"{days} day" + ("s" if days > 1 else "")
             elif months_pattern.match(range):
                 months = int(range.removesuffix('m'))
                 diff = dt.timedelta(days=months * 30)
-                range_str = f"{months} month" + "s" if months > 1 else ""
+                range_str = f"{months} month" + ("s" if months > 1 else "")
             elif years_pattern.match(range):
                 years = int(range.removesuffix('y'))
                 diff = dt.timedelta(days=years * 365)
-                range_str = f"{years} year" + "s" if years > 1 else ""
+                range_str = f"{years} year" + ("s" if years > 1 else "")
             else:
                 logging.info(f"{ctx.author.display_name} tried to generate graph with invalid range {range}")
                 await ctx.send("The time range must be specified in days (d), months (m) or years (m). " +
@@ -74,7 +74,8 @@ class ChartCommand(commands.Cog,
             else:
                 interval = "5m"
 
-            ticker_data = yf.download([symbol], group_by="Ticker", start=start, end=end, interval=interval)
+            ticker_data = yf.download([symbol], group_by="Ticker", start=start, end=end, interval=interval,
+                                      threads=False, prepost=True, rounding=True)
 
             candlestick = go.Figure(data=[go.Candlestick(x=ticker_data.index,
                                                          open=ticker_data['Open'],
