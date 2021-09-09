@@ -89,7 +89,7 @@ class ChartCommand(commands.Cog,
 
             rangebreaks = [dict(bounds=["sat", "mon"])]
 
-            if diff.days > 30:
+            if diff.days <= 30:
                 rangebreaks += [dict(bounds=[20, 5], pattern="hour")]
 
             candlestick.update_layout(title=chart_title)
