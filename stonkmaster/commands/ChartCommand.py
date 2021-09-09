@@ -26,14 +26,13 @@ class ChartCommand(commands.Cog,
     def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
         self.bot = bot
         self.config = config
-        self.yahooBaseUrl = "https://query1.finance.yahoo.com/v7/finance/download"
+        self.yahooBaseUrl = "https://query2.finance.yahoo.com/v7/finance/download"
 
     def get_ticker_data(self, ticker: str, start, end, interval):
         response = requests.get(f"{self.yahooBaseUrl}/{urllib.parse.quote(ticker)}", stream=True, params={
             'period1': datetime_to_timestamp(start),
             'period2': datetime_to_timestamp(end),
-            'interval': interval,
-            'events': 'history'
+            'interval': interval
         }, headers={
             'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 ' +
                           '(KHTML, like Gecko) Chrome/92.0.4515.159 Mobile Safari/537.36'
