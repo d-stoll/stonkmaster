@@ -65,8 +65,6 @@ class ChartCommand(commands.Cog,
                 interval = "1d"
             elif diff.days > 7:
                 interval = "1h"
-            elif diff.days > 3:
-                interval = "30m"
             else:
                 interval = "5m"
 
