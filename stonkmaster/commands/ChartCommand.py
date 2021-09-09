@@ -9,6 +9,7 @@ import plotly.graph_objects as go
 import plotly.io as pio
 import yfinance as yf
 from discord.ext import commands
+from pytz import timezone
 
 pio.templates.default = 'plotly_dark'
 
@@ -58,7 +59,8 @@ class ChartCommand(commands.Cog,
             await ctx.send(f"**Generating chart of {symbol} for the last {range_str}... " +
                            f"{self.config['emojis']['Chart']}**")
 
-            end = dt.datetime.now()
+            et = timezone('US/Eastern')
+            end = dt.datetime.now(et)
             start = end - diff
 
             if diff.days > 30:
@@ -84,7 +86,7 @@ class ChartCommand(commands.Cog,
 
             rangebreaks = [dict(bounds=["sat", "mon"])]
             if ticker_data.index.name == "Datetime":
-                rangebreaks += [dict(bounds=[22, 15.5], pattern="hour")]
+                rangebreaks += [dict(bounds=[16, 9.5], pattern="hour")]
 
             candlestick.update_layout(title=chart_title)
             candlestick.update_xaxes(
