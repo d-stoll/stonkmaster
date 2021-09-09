@@ -30,15 +30,15 @@ class ChartCommand(commands.Cog,
             if days_pattern.match(range):
                 days = int(range.removesuffix('d'))
                 diff = dt.timedelta(days=days)
-                range_str = f"{days} day" + ("s" if days > 1 else "")
+                range_str = f"{days} days" if days > 1 else "day"
             elif months_pattern.match(range):
                 months = int(range.removesuffix('m'))
                 diff = dt.timedelta(days=months * 30)
-                range_str = f"{months} month" + ("s" if months > 1 else "")
+                range_str = f"{months} months" if months > 1 else "month"
             elif years_pattern.match(range):
                 years = int(range.removesuffix('y'))
                 diff = dt.timedelta(days=years * 365)
-                range_str = f"{years} year" + ("s" if years > 1 else "")
+                range_str = f"{years} years" if years > 1 else "year"
             else:
                 logging.info(f"{ctx.author.display_name} tried to generate graph with invalid range {range}")
                 await ctx.send("The time range must be specified in days (d), months (m) or years (m). " +
@@ -89,8 +89,8 @@ class ChartCommand(commands.Cog,
                 chart_title = info['symbol']
 
             rangebreaks = [dict(bounds=["sat", "mon"])]
-            if interval != "1d":
-                rangebreaks += [dict(bounds=[16, 9.5], pattern="hour")]
+            # if interval != "1d":
+            #    rangebreaks += [dict(bounds=[16, 9.5], pattern="hour")]
 
             candlestick.update_layout(title=chart_title)
             candlestick.update_xaxes(
