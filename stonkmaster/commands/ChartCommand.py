@@ -84,7 +84,7 @@ class ChartCommand(commands.Cog,
             else:
                 chart_title = info['symbol']
 
-            #rangebreaks = [dict(bounds=["sat", "mon"])]
+            # rangebreaks = [dict(bounds=["sat", "mon"])]
             # if ticker_data.index.name == "Datetime":
             #    rangebreaks += [dict(bounds=[16, 9.5], pattern="hour")]
 
