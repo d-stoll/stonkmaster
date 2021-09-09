@@ -71,7 +71,7 @@ class ChartCommand(commands.Cog,
                 interval = "5m"
 
             ticker_data = yf.download([symbol], group_by="Ticker", start=start, end=end, interval=interval,
-                                      threads=False, prepost=False, rounding=True)
+                                      threads=False, prepost=False, rounding=False, progress=False)
 
             candlestick = go.Figure(data=[go.Candlestick(x=ticker_data.index,
                                                          open=ticker_data['Open'],
