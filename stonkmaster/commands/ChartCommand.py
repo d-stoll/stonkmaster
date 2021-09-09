@@ -66,17 +66,15 @@ class ChartCommand(commands.Cog,
             if diff.days > 30:
                 ticker_data = daily(symbol=symbol)
             else:
-                if diff.days > 14:
+                if diff.days > 7:
                     interval = "60min"
-                elif diff.days > 7:
-                    interval = "30min"
                 elif diff.days > 3:
-                    interval = "15min"
+                    interval = "30min"
                 else:
                     interval = "5min"
                 ticker_data = intraday(symbol=symbol, interval=interval, days=diff.days)
 
-            ticker_data = ticker_data.loc[start:end]
+            ticker_data = ticker_data.loc[ticker_data.index >= start]
 
             candlestick = go.Figure(data=[go.Candlestick(x=ticker_data.index,
                                                          open=ticker_data['open'],
@@ -89,10 +87,10 @@ class ChartCommand(commands.Cog,
             else:
                 chart_title = info['symbol']
 
-            rangebreaks = [
-                dict(bounds=["sat", "mon"]),
-                dict(bounds=[16, 9.5], pattern="hour")
-            ]
+            rangebreaks = [dict(bounds=["sat", "mon"])]
+
+            if diff.days > 30:
+                rangebreaks += [dict(bounds=[20, 5], pattern="hour")]
 
             candlestick.update_layout(title=chart_title)
             candlestick.update_xaxes(rangeslider_visible=False, rangebreaks=rangebreaks)

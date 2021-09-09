@@ -56,35 +56,26 @@ def intraday(symbol: str, interval: str, days: int):
 
         df = pandas.DataFrame.from_dict(intraday_data[f"Time Series ({interval})"], orient='index')
         df.index = pandas.to_datetime(df.index)
-        df["open"] = df["1. open"]
-        df["high"] = df["2. high"]
-        df["low"] = df["3. low"]
-        df["close"] = df["4. close"]
+        df = df.rename(columns={
+            "1. open": "open",
+            "2. high": "high",
+            "3. low": "low",
+            "4. close": "close"
+        })
+
         return df
     else:
-        month = 1
-        df = None
+        monthly_intraday_data = requests.get(alpha_vantage_base_url, params={
+            "function": "TIME_SERIES_INTRADAY_EXTENDED",
+            "symbol": symbol.upper(),
+            "interval": interval,
+            "slice": "year1month1",
+            "apikey": os.environ['ALPHA_VANTAGE_TOKEN']
+        }).content.decode("utf-8")
 
-        while days > 0:
-            monthly_intraday_data = requests.get(alpha_vantage_base_url, params={
-                "function": "TIME_SERIES_INTRADAY_EXTENDED",
-                "symbol": symbol.upper(),
-                "interval": interval,
-                "slice": f"year1month${month}",
-                "apikey": os.environ['ALPHA_VANTAGE_TOKEN']
-            }).content.decode("utf-8")
-
-            batch = pandas.read_csv(StringIO(monthly_intraday_data), sep=',')
-            batch = batch.set_index("time")
-            batch.index = pandas.to_datetime(batch.index)
-
-            if df is None:
-                df = batch
-            else:
-                df.append(batch)
-
-            days -= 30
-            month += 1
+        df = pandas.read_csv(StringIO(monthly_intraday_data), sep=',')
+        df = df.set_index("time")
+        df.index = pandas.to_datetime(df.index)
 
         return df
 
@@ -99,8 +90,11 @@ def daily(symbol: str):
 
     df = pandas.DataFrame.from_dict(daily_data["Time Series (Daily)"], orient='index')
     df.index = pandas.to_datetime(df.index)
-    df["open"] = df["1. open"]
-    df["high"] = df["2. high"]
-    df["low"] = df["3. low"]
-    df["close"] = df["4. close"]
+    df = df.rename(columns={
+        "1. open": "open",
+        "2. high": "high",
+        "3. low": "low",
+        "4. close": "close"
+    })
+
     return df
