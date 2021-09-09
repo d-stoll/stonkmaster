@@ -8,6 +8,7 @@ import discord
 import plotly.graph_objects as go
 import plotly.io as pio
 import yfinance as yf
+import pandas as pd
 from discord.ext import commands
 from pytz import timezone
 
@@ -72,6 +73,15 @@ class ChartCommand(commands.Cog,
 
             ticker_data = yf.download([symbol], group_by="Ticker", start=start, end=end, interval=interval,
                                       threads=False, prepost=False, rounding=False, progress=False)
+
+            td_start, td_end = ticker_data.index[0], ticker_data.index[-1]
+
+            if interval[-1] == 'd':
+                freq = f"{interval[:-1]}D"
+            else:
+                freq = f"{interval[:-1]}min"
+
+            ticker_data = ticker_data.reindex(pd.date_range(td_start, td_end), freq=freq)
 
             candlestick = go.Figure(data=[go.Candlestick(x=ticker_data.index,
                                                          open=ticker_data['Open'],
