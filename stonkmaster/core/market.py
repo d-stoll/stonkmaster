@@ -47,20 +47,12 @@ def intraday(symbol: str, interval: str, days: int):
     assert days < 60
 
     if days == 1:
-        intraday_data = requests.get(alpha_vantage_base_url, params={
-            "function": "TIME_SERIES_INTRADAY",
-            "symbol": symbol.upper(),
-            "interval": interval,
-            "apikey": os.environ['ALPHA_VANTAGE_TOKEN']
-        }).json()
-
-        df = pandas.DataFrame.from_dict(intraday_data[f"Time Series ({interval})"], orient='index')
-        df.index = pandas.to_datetime(df.index)
+        df = yf.Ticker(symbol).history(period="1d", interval="1m", tz="Europe/Berlin")
         df = df.rename(columns={
-            "1. open": "open",
-            "2. high": "high",
-            "3. low": "low",
-            "4. close": "close"
+            "Open": "open",
+            "High": "high",
+            "Low": "low",
+            "Close": "close"
         })
 
         return df
