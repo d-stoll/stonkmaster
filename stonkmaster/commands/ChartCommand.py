@@ -81,7 +81,7 @@ class ChartCommand(commands.Cog,
             else:
                 freq = f"{interval[:-1]}min"
 
-            ticker_data = ticker_data.reindex(pd.date_range(td_start, td_end), freq=freq)
+            ticker_data = ticker_data.reindex(pd.date_range(td_start, td_end, freq=freq))
 
             candlestick = go.Figure(data=[go.Candlestick(x=ticker_data.index,
                                                          open=ticker_data['Open'],
