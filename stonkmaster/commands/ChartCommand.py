@@ -84,7 +84,7 @@ class ChartCommand(commands.Cog,
 
             rangebreaks = [dict(bounds=["sat", "mon"])]
             if ticker_data.index.name == "Datetime":
-                rangebreaks += [dict(bounds=[15.5, 22], pattern="hour")]
+                rangebreaks += [dict(bounds=[22, 15.5], pattern="hour")]
 
             candlestick.update_layout(title=chart_title)
             candlestick.update_xaxes(
