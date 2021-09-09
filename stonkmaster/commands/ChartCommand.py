@@ -3,14 +3,21 @@ import datetime as dt
 import logging
 import os
 import re
+import urllib.parse
 
 import discord
 import plotly.graph_objects as go
 import plotly.io as pio
+import requests
 import yfinance as yf
 from discord.ext import commands
+import pandas as pd
 
 pio.templates.default = 'plotly_dark'
+
+
+def datetime_to_timestamp(datetime):
+    return round(dt.datetime.timestamp(datetime))
 
 
 class ChartCommand(commands.Cog,
@@ -19,6 +26,20 @@ class ChartCommand(commands.Cog,
     def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
         self.bot = bot
         self.config = config
+        self.yahooBaseUrl = "https://query1.finance.yahoo.com/v7/finance/download"
+
+    def get_ticker_data(self, ticker: str, start, end, interval):
+        response = requests.get(f"{self.yahooBaseUrl}/{urllib.parse.quote(ticker)}", stream=True, params={
+            'period1': datetime_to_timestamp(start),
+            'period2': datetime_to_timestamp(end),
+            'interval': interval,
+            'events': 'history'
+        }, headers={
+            'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 ' +
+                          '(KHTML, like Gecko) Chrome/92.0.4515.159 Mobile Safari/537.36'
+        })
+        response.raise_for_status()
+        return pd.read_csv(response.raw)
 
     @commands.command(name="chart")
     async def _chart(self, ctx: commands.Context, ticker: str, range: str):
@@ -74,10 +95,12 @@ class ChartCommand(commands.Cog,
             else:
                 interval = "5m"
 
-            ticker_data = yf.download([symbol], group_by="Ticker", start=start, end=end, interval=interval,
-                                      threads=False, prepost=True, rounding=True)
+            # ticker_data = yf.download([symbol], group_by="Ticker", start=start, end=end, interval=interval,
+            #                          threads=False, prepost=False, rounding=True)
 
-            candlestick = go.Figure(data=[go.Candlestick(x=ticker_data.index,
+            ticker_data = self.get_ticker_data(symbol, start, end, interval=interval)
+
+            candlestick = go.Figure(data=[go.Candlestick(x=ticker_data['Date'],
                                                          open=ticker_data['Open'],
                                                          high=ticker_data['High'],
                                                          low=ticker_data['Low'],
@@ -89,8 +112,8 @@ class ChartCommand(commands.Cog,
                 chart_title = info['symbol']
 
             rangebreaks = [dict(bounds=["sat", "mon"])]
-            # if interval != "1d":
-            #    rangebreaks += [dict(bounds=[16, 9.5], pattern="hour")]
+            if interval != "1d":
+                rangebreaks += [dict(bounds=[16, 9.5], pattern="hour")]
 
             candlestick.update_layout(title=chart_title)
             candlestick.update_xaxes(
