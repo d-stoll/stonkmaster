@@ -8,9 +8,7 @@ import discord
 import plotly.graph_objects as go
 import plotly.io as pio
 import yfinance as yf
-import pandas as pd
 from discord.ext import commands
-from pytz import timezone
 
 from stonkmaster.core.market import daily, intraday
 
