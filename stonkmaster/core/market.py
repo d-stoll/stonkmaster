@@ -75,6 +75,7 @@ def intraday(symbol: str, interval: str, days: int):
             }).content.decode("utf-8")
 
             batch = pandas.read_csv(StringIO(monthly_intraday_data), sep=',')
+            batch = batch.set_index("time")
             batch.index = pandas.to_datetime(batch.index)
 
             if df is None:
