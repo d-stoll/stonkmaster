@@ -3,21 +3,14 @@ import datetime as dt
 import logging
 import os
 import re
-import urllib.parse
 
 import discord
 import plotly.graph_objects as go
 import plotly.io as pio
-import requests
 import yfinance as yf
 from discord.ext import commands
-import pandas as pd
 
 pio.templates.default = 'plotly_dark'
-
-
-def datetime_to_timestamp(datetime):
-    return round(dt.datetime.timestamp(datetime))
 
 
 class ChartCommand(commands.Cog,
@@ -26,19 +19,6 @@ class ChartCommand(commands.Cog,
     def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
         self.bot = bot
         self.config = config
-        self.yahooBaseUrl = "https://query2.finance.yahoo.com/v7/finance/download"
-
-    def get_ticker_data(self, ticker: str, start, end, interval):
-        response = requests.get(f"{self.yahooBaseUrl}/{urllib.parse.quote(ticker)}", stream=True, params={
-            'period1': datetime_to_timestamp(start),
-            'period2': datetime_to_timestamp(end),
-            'interval': interval
-        }, headers={
-            'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 ' +
-                          '(KHTML, like Gecko) Chrome/92.0.4515.159 Mobile Safari/537.36'
-        })
-        response.raise_for_status()
-        return pd.read_csv(response.raw)
 
     @commands.command(name="chart")
     async def _chart(self, ctx: commands.Context, ticker: str, range: str):
@@ -83,8 +63,6 @@ class ChartCommand(commands.Cog,
 
             if diff.days > 60:
                 interval = "1d"
-            elif diff.days > 30:
-                interval = "90m"
             elif diff.days > 14:
                 interval = "60m"
             elif diff.days > 7:
@@ -94,12 +72,10 @@ class ChartCommand(commands.Cog,
             else:
                 interval = "5m"
 
-            # ticker_data = yf.download([symbol], group_by="Ticker", start=start, end=end, interval=interval,
-            #                          threads=False, prepost=False, rounding=True)
+            ticker_data = yf.download([symbol], group_by="Ticker", start=start, end=end, interval=interval,
+                                      threads=False, prepost=False, rounding=True)
 
-            ticker_data = self.get_ticker_data(symbol, start, end, interval=interval)
-
-            candlestick = go.Figure(data=[go.Candlestick(x=ticker_data['Date'],
+            candlestick = go.Figure(data=[go.Candlestick(x=ticker_data.index,
                                                          open=ticker_data['Open'],
                                                          high=ticker_data['High'],
                                                          low=ticker_data['Low'],
