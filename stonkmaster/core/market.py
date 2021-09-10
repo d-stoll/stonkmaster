@@ -83,8 +83,7 @@ def intraday(symbol: str, interval: str, days: int):
 
 def daily(symbol: str, days: int):
     diff = datetime.timedelta(days=days)
-    tz = pytz.timezone("America/New_York")
-    end = datetime.datetime.now(tz)
+    end = datetime.date.today()
     start = end - diff
 
     daily_data = requests.get(alpha_vantage_base_url, params={
@@ -95,7 +94,7 @@ def daily(symbol: str, days: int):
     }).json()
 
     df = pandas.DataFrame.from_dict(daily_data["Time Series (Daily)"], orient='index')
-    df.index = pandas.to_datetime(df.index).tz_localize("America/New_York")
+    df.index = pandas.to_datetime(df.index)
     df = df.rename(columns={
         "1. open": "open",
         "2. high": "high",
@@ -106,13 +105,12 @@ def daily(symbol: str, days: int):
     # Alpha vantage only updates over night, so it does not contain the data from today (if today is an trading day)
     if not is_market_closed():
         current_info = yf.Ticker(symbol).info
-        today = pandas.Series({
+        df.loc[pandas.to_datetime(datetime.date.today().strftime("%Y-%m-%d"))] = {
             "open": current_info['regularMarketOpen'],
             "high": current_info['regularMarketDayHigh'],
             "low": current_info['regularMarketDayLow'],
             "close": current_info['currentPrice'],
-        }, name=end)
-        df = df.append(today)
+        }
 
-    df = df.loc[df.index >= start]
+    df = df.loc[df.index >= pandas.to_datetime(start.strftime("%Y-%m-%d"))]
     return df
