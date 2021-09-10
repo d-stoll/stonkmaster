@@ -70,6 +70,12 @@ $ cp default.ini custom.ini
 $ vim custom.ini
 ```
 
+(Optional) Some commands access the alpha vantage API, so they are only usable if an API key is defined. You can claim your free personal api key [here](https://www.alphavantage.co/support/#api-key). It takes only a minute and there are no payment methods required.
+
+```{bash}
+$ export ALPHA_VANTAGE_TOKEN=<YOUR_PERSONAL_ALPHA_VANTAGE_KEY>
+```
+
 To run the bot, obtain you personal discord token and run the stonkmaster executable (with your own configuration if you created one).
 
 ```{bash}
@@ -85,9 +91,12 @@ The main functionality of the bot is to query data from financial APIs and make 
 
 - `$price [ticker]` -> Shows the current price of the stonk, as well as its daily change.
 - `$shorts [ticker]` -> Provides currently known information on how heavily the stonk is shorted.
-- `$chart [ticker] [range]` -> Generates a chart showing the price development of the ticker over. The range can be specified in days (d), months (m) or years (y).
 - `$sec [ticker] [filing-type]` -> Fetches the latest SEC company filings from EDGAR.
 - `$watch [ticker]` -> Displays the price and change of a ticker in the bot status.
+
+Following commands access the alpha vantage API, so a valid API key must be set up:
+
+- `$chart [ticker] [range]` -> Generates a chart showing the price development of the ticker over. The range can be specified in days (d), months (m) or years (y).
 
 In future releases we also plan to implement the following commands:
 
@@ -95,6 +104,9 @@ In future releases we also plan to implement the following commands:
 - `$config [key] [value]` -> Changes the configuration of the bot (for example the emotes).
 - `$watchlist [ticker]` -> Adds a ticker to your personal watchlist. The bot will inform you about movements in your stocks.
 - `$wiki [keyword]` -> Searches investopedia for a definition of the keyword.
+- `$ipos` -> Shows all IPOs that are likely to take place in the next 2 weeks.
+- `$earnings` -> Shows all company earnings expected in the next 2 weeks.
+- `$fundamentals [ticker]` -> Displays the fundamental data points of a company.
 
 The list of commands is continuously being expanded. If you find bugs or want to suggest improvements, do not hesitate to make a pull request.
 
