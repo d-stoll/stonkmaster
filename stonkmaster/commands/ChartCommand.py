@@ -1,13 +1,11 @@
 import configparser
 import datetime as dt
 import logging
-import os
 import re
 
 import discord
 import plotly.graph_objects as go
 import plotly.io as pio
-import pytz
 import yfinance as yf
 from discord.ext import commands
 
@@ -61,22 +59,21 @@ class ChartCommand(commands.Cog,
             await ctx.send(f"**Generating chart of {symbol} for the last {range_str}... " +
                            f"{self.config['emojis']['Chart']}**")
 
-            tz = pytz.timezone("America/New_York")
-            end = dt.datetime.now(tz)
-            start = end - diff
-
             if diff.days > 30:
-                ticker_data = daily(symbol=symbol)
+                ticker_data = daily(symbol=symbol, days= diff.days)
             else:
-                if diff.days > 7:
+                if diff.days > 14:
                     interval = "60min"
-                elif diff.days > 3:
+                elif diff.days > 7:
                     interval = "30min"
-                else:
+                elif diff.days > 3:
+                    interval = "15min"
+                elif diff.days > 1:
                     interval = "5min"
-                ticker_data = intraday(symbol=symbol, interval=interval, days=diff.days)
+                else:
+                    interval = "1min"
 
-            ticker_data = ticker_data.loc[ticker_data.index >= start]
+                ticker_data = intraday(symbol=symbol, interval=interval, days=diff.days)
 
             candlestick = go.Figure(data=[go.Candlestick(x=ticker_data.index,
                                                          open=ticker_data['open'],
@@ -92,7 +89,7 @@ class ChartCommand(commands.Cog,
             rangebreaks = [dict(bounds=["sat", "mon"])]
 
             if diff.days <= 30:
-                rangebreaks += [dict(bounds=[20, 5], pattern="hour")]
+                rangebreaks += [dict(bounds=[16, 9.5], pattern="hour")]
 
             candlestick.update_layout(title=chart_title)
             candlestick.update_xaxes(rangeslider_visible=False, rangebreaks=rangebreaks)
@@ -104,7 +101,7 @@ class ChartCommand(commands.Cog,
                 picture = discord.File(f)
                 await ctx.send(file=picture)
 
-            os.remove(path)
+            # os.remove(path)
 
         except Exception as ex:
             logging.exception(f"Exception in ChartCommand: {ex}")

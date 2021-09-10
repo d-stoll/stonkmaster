@@ -1,5 +1,7 @@
 import datetime
 import os
+from enum import Enum
+
 import requests
 from io import StringIO
 
@@ -44,18 +46,22 @@ def is_market_closed(now=None):  # credits @Reddit u/numbuh-0
 
 
 def intraday(symbol: str, interval: str, days: int):
-    assert days < 60
+    assert days < 31
 
+    diff = datetime.timedelta(days=days)
+    tz = pytz.timezone("America/New_York")
+    end = datetime.datetime.now(tz)
+    start = end - diff
+
+    # We should use alpha vantage since it's more stable, however av does not contain the current day.
     if days == 1:
-        df = yf.Ticker(symbol).history(period="1d", interval="1m")
+        df = yf.Ticker(symbol).history(period="1d", interval=interval.replace("min", "m"))
         df = df.rename(columns={
             "Open": "open",
             "High": "high",
             "Low": "low",
             "Close": "close"
         })
-
-        return df
     else:
         monthly_intraday_data = requests.get(alpha_vantage_base_url, params={
             "function": "TIME_SERIES_INTRADAY_EXTENDED",
@@ -67,12 +73,22 @@ def intraday(symbol: str, interval: str, days: int):
 
         df = pandas.read_csv(StringIO(monthly_intraday_data), sep=',')
         df = df.set_index("time")
-        df.index = pandas.to_datetime(df.index)
+        df.index = pandas.to_datetime(df.index).tz_localize("America/New_York")
 
-        return df
+        # Alpha vantage only updates over night, so it does not contain the data from today (if today is an trading day)
+        if not is_market_closed():
+            df = df.append(intraday(symbol, interval, 1))
+
+    df = df.loc[df.index >= start]
+    return df
 
 
-def daily(symbol: str):
+def daily(symbol: str, days: int):
+    diff = datetime.timedelta(days=days)
+    tz = pytz.timezone("America/New_York")
+    end = datetime.datetime.now(tz)
+    start = end - diff
+
     daily_data = requests.get(alpha_vantage_base_url, params={
         "function": "TIME_SERIES_DAILY_ADJUSTED",
         "symbol": symbol.upper(),
@@ -81,7 +97,7 @@ def daily(symbol: str):
     }).json()
 
     df = pandas.DataFrame.from_dict(daily_data["Time Series (Daily)"], orient='index')
-    df.index = pandas.to_datetime(df.index)
+    df.index = pandas.to_datetime(df.index).tz_localize("America/New_York")
     df = df.rename(columns={
         "1. open": "open",
         "2. high": "high",
@@ -89,4 +105,16 @@ def daily(symbol: str):
         "4. close": "close"
     })
 
+    # Alpha vantage only updates over night, so it does not contain the data from today (if today is an trading day)
+    if not is_market_closed():
+        current_info = yf.Ticker(symbol).info
+        today = pandas.Series({
+            "open": current_info['regularMarketOpen'],
+            "high": current_info['regularMarketDayHigh'],
+            "low": current_info['regularMarketDayLow'],
+            "close": current_info['currentPrice'],
+        }, name=end)
+        df = df.append(today)
+
+    df = df.loc[df.index >= start]
     return df
