@@ -1,6 +1,7 @@
 import configparser
 import datetime as dt
 import logging
+import os
 import re
 
 import discord
@@ -101,7 +102,7 @@ class ChartCommand(commands.Cog,
                 picture = discord.File(f)
                 await ctx.send(file=picture)
 
-            # os.remove(path)
+            os.remove(path)
 
         except Exception as ex:
             logging.exception(f"Exception in ChartCommand: {ex}")
