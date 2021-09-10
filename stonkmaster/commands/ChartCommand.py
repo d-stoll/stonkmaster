@@ -32,15 +32,15 @@ class ChartCommand(commands.Cog,
             if days_pattern.match(range):
                 days = int(range.removesuffix('d'))
                 diff = dt.timedelta(days=days)
-                range_str = f"{days} days" if days > 1 else "day"
+                range_str = f"the last {days} days" if days > 1 else "today"
             elif months_pattern.match(range):
                 months = int(range.removesuffix('m'))
                 diff = dt.timedelta(days=months * 30)
-                range_str = f"{months} months" if months > 1 else "month"
+                range_str = "the last" + (f"{months} months" if months > 1 else "month")
             elif years_pattern.match(range):
                 years = int(range.removesuffix('y'))
                 diff = dt.timedelta(days=years * 365)
-                range_str = f"{years} years" if years > 1 else "year"
+                range_str = "the last" + (f"{years} years" if years > 1 else "year")
             else:
                 logging.info(f"{ctx.author.display_name} tried to generate graph with invalid range {range}")
                 await ctx.send("The time range must be specified in days (d), months (m) or years (m). " +
@@ -57,8 +57,7 @@ class ChartCommand(commands.Cog,
 
             symbol = info['symbol']
 
-            await ctx.send(f"**Generating chart of {symbol} for the last {range_str}... " +
-                           f"{self.config['emojis']['Chart']}**")
+            await ctx.send(f"**Generating chart of {symbol} for {range_str}... {self.config['emojis']['Chart']}**")
 
             if diff.days > 30:
                 ticker_data = daily(symbol=symbol, days=diff.days)
