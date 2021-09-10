@@ -1,13 +1,11 @@
 import datetime
 import os
-from enum import Enum
-
-import requests
 from io import StringIO
 
-import pandas
 import holidays
+import pandas
 import pytz
+import requests
 import yfinance as yf
 
 alpha_vantage_base_url = "https://www.alphavantage.co/query"

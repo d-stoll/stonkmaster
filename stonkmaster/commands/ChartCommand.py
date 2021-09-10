@@ -60,7 +60,7 @@ class ChartCommand(commands.Cog,
                            f"{self.config['emojis']['Chart']}**")
 
             if diff.days > 30:
-                ticker_data = daily(symbol=symbol, days= diff.days)
+                ticker_data = daily(symbol=symbol, days=diff.days)
             else:
                 if diff.days > 14:
                     interval = "60min"
