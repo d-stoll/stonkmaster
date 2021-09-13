@@ -26,7 +26,7 @@ class WikiCommand(commands.Cog,
             for item in soup.select("#mntl-sc-page_1-0"):
                 required_data = item.select("p")[0].text.strip()
 
-            if required_data == None:
+            if required_data is None:
                 await ctx.send(
                     f"Check no amoi dein Suchterm ob {self.config['emojis']['NotFound']} "
                     f"oder schau selber noch du faule Sau: <https://www.investopedia.com/>")
