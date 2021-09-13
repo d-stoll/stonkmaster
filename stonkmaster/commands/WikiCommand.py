@@ -28,7 +28,7 @@ class WikiCommand(commands.Cog,
 
             if required_data == None:
                 await ctx.send(
-                    f"Check eventuell no amoi dein Suchterm ob {self.config['emojis']['NotFound']} "
+                    f"Check no amoi dein Suchterm ob {self.config['emojis']['NotFound']} "
                     f"oder schau selber noch du faule Sau: <https://www.investopedia.com/>")
                 return
 
