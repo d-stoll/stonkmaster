@@ -23,7 +23,7 @@ class ChartCommand(commands.Cog,
         self.config = config
 
     @commands.command(name="chart")
-    async def _chart(self, ctx: commands.Context, ticker: str, range: str):
+    async def _chart(self, ctx: commands.Context, ticker: str, range: str = "1d"):
         try:
             days_pattern = re.compile("[0-9]+d")
             months_pattern = re.compile("[0-9]+m")
