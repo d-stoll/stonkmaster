@@ -26,7 +26,6 @@ class WatchCommand(commands.Cog,
                 required_data = item.select("p")[0].text.strip()
 
             msg = discord.Embed(title=" ".join(keywords).title(), url=url, description=required_data)
-            #msg.add_field(name="", value=required_data, inline=False)
             await ctx.send(embed=msg)
 
         except Exception as ex:
