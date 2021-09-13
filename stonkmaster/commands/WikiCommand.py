@@ -31,3 +31,4 @@ class WikiCommand(commands.Cog,
         except Exception as ex:
             logging.exception(f"Exception in WikiCommand: {ex}")
             await ctx.send(f"Do hod wos ned bassd, I bin raus. {self.config['emojis']['Error']}")
+            await ctx.send(f"Check eventuell no amoi dein Suchterm ob. {self.config['emojis']['Error']}")
