@@ -28,8 +28,8 @@ class WikiCommand(commands.Cog,
 
             if required_data is None:
                 await ctx.send(
-                    f"Check no amoi dein Suchterm ob {self.config['emojis']['NotFound']} "
-                    f"oder schau selber noch du faule Sau: <https://www.investopedia.com/>")
+                    f"Check no amoi dein Suchterm ob oder schau selber noch du faule Sau: "
+                    f"<https://www.investopedia.com/> {self.config['emojis']['NotFound']}")
                 return
 
             msg = discord.Embed(title=" ".join(keywords).title(), url=url, description=required_data)
