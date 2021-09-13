@@ -18,6 +18,19 @@ class WikiCommand(commands.Cog,
     async def _wiki(self, ctx, *keywords):
         try:
 
+            term = "".join(keywords)
+            url = f"https://www.investopedia.com/terms/{term[0]}/{term}.asp"
+            soup = BeautifulSoup(requests.get(url).text,
+                                 "html.parser")
+            required_data = None
+            for item in soup.select("#mntl-sc-page_1-0"):
+                required_data = item.select("p")[0].text.strip()
+
+            if required_data is not None:
+                msg = discord.Embed(title=" ".join(keywords).title(), url=url, description=required_data)
+                await ctx.send(embed=msg)
+                return
+
             term = "+".join(keywords)
             url = f"https://www.investopedia.com/search?q={term}"
             soup = BeautifulSoup(requests.get(url).text,
