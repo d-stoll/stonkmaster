@@ -24,6 +24,6 @@ def create_bot(config: configparser.ConfigParser, intents=None, loop=None):
     bot.add_cog(SecCommand(bot, config))
     bot.add_cog(ShortsCommand(bot, config))
     bot.add_cog(WatchCommand(bot, config))
-    bot.add_cog(WikiCommand(bot,config))
+    bot.add_cog(WikiCommand(bot, config))
 
     return bot

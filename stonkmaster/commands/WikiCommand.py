@@ -8,8 +8,8 @@ from discord.ext import commands
 
 
 class WikiCommand(commands.Cog,
-                   name="Wiki",
-                   description="Searches investopedia for a definition of the keyword."):
+                  name="Wiki",
+                  description="Searches investopedia for a definition of the keyword."):
     def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
         self.bot = bot
         self.config = config
