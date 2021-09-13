@@ -93,6 +93,7 @@ The main functionality of the bot is to query data from financial APIs and make 
 - `$shorts [ticker]` -> Provides currently known information on how heavily the stonk is shorted.
 - `$sec [ticker] [filing-type]` -> Fetches the latest SEC company filings from EDGAR.
 - `$watch [ticker]` -> Displays the price and change of a ticker in the bot status.
+- `$wiki [keyword]*` -> Searches investopedia for a definition of the keyword.
 
 Following commands access the alpha vantage API, so a valid API key must be set up:
 
@@ -103,7 +104,6 @@ In future releases we also plan to implement the following commands:
 - `$options [ticker]` -> Displays options and their greeks of a specified ticker.
 - `$config [key] [value]` -> Changes the configuration of the bot (for example the emotes).
 - `$watchlist [ticker]` -> Adds a ticker to your personal watchlist. The bot will inform you about movements in your stocks.
-- `$wiki [keyword]` -> Searches investopedia for a definition of the keyword.
 - `$ipos` -> Shows all IPOs that are likely to take place in the next 2 weeks.
 - `$earnings` -> Shows all company earnings expected in the next 2 weeks.
 - `$fundamentals [ticker]` -> Displays the fundamental data points of a company.
