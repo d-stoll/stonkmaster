@@ -22,8 +22,15 @@ class WikiCommand(commands.Cog,
             url = f"https://www.investopedia.com/terms/{term[0]}/{term}.asp"
             soup = BeautifulSoup(requests.get(url).text,
                                  "html.parser")
+            required_data = None
             for item in soup.select("#mntl-sc-page_1-0"):
                 required_data = item.select("p")[0].text.strip()
+
+            if required_data == None:
+                await ctx.send(
+                    f"Check eventuell no amoi dein Suchterm ob {self.config['emojis']['NotFound']} "
+                    f"oder schau selber noch du faule Sau: <https://www.investopedia.com/>")
+                return
 
             msg = discord.Embed(title=" ".join(keywords).title(), url=url, description=required_data)
             await ctx.send(embed=msg)
@@ -31,6 +38,3 @@ class WikiCommand(commands.Cog,
         except Exception as ex:
             logging.exception(f"Exception in WikiCommand: {ex}")
             await ctx.send(f"Do hod wos ned bassd, I bin raus. {self.config['emojis']['Error']}")
-            await ctx.send(
-                f"Check eventuell no amoi dein Suchterm ob. {self.config['emojis']['Error']} oder schau selber noch "
-                f"du faule Sau: <https://www.investopedia.com/>")
