@@ -93,7 +93,7 @@ The main functionality of the bot is to query data from financial APIs and make 
 - `$shorts [ticker]` -> Provides currently known information on how heavily the stonk is shorted.
 - `$sec [ticker] [filing-type]` -> Fetches the latest SEC company filings from EDGAR.
 - `$watch [ticker]` -> Displays the price and change of a ticker in the bot status.
-- `$wiki [keyword]*` -> Searches investopedia for a definition of the keyword.
+- `$wiki [keywords...]` -> Searches investopedia for a definition of the keyword.
 
 Following commands access the alpha vantage API, so a valid API key must be set up:
 
