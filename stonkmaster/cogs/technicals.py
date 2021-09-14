@@ -19,19 +19,19 @@ class TechnicalsCog(BaseCog, name="Technicals"):
         self.watch_command = WatchCommand(self.config, self.update_status_task)
         self.update_status.start()
 
-    @commands.command(name="price",
-                      description="Shows the current price of the stonk, as well as its daily change.")
+    @commands.command(name="price")
     async def _price(self, ctx: commands.Context, ticker: str):
+        """Shows the current price of the stonk, as well as its daily change."""
         await self.price_command.execute(ctx, ticker)
 
-    @commands.command(name="watch",
-                      description="Displays the price and change of a ticker in the status.")
+    @commands.command(name="watch")
     async def _watch(self, ctx: commands.Context, ticker: str):
-        pass
+        """Displays the price and change of a ticker in the status."""
+        await self.watch_command.execute(ctx, ticker)
 
-    @commands.command(name="chart",
-                      description="Generates a chart showing the price development of the share in the last months.")
+    @commands.command(name="chart")
     async def _chart(self, ctx: commands.Context, ticker: str, range: str):
+        """Generates a chart showing the price development of the share in the last months."""
         await self.chart_command.execute(ctx, ticker, range)
 
     @tasks.loop(seconds=20.0)
