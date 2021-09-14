@@ -1,23 +1,16 @@
-import configparser
 import logging
 
 import discord
 import requests
 from bs4 import BeautifulSoup
-from discord.ext import commands
+
+from stonkmaster.commands.base import BaseCommand
 
 
-class WikiCommand(commands.Cog,
-                  name="Wiki",
-                  description="Searches investopedia for a definition of the keyword."):
-    def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
-        self.bot = bot
-        self.config = config
+class WikiCommand(BaseCommand):
 
-    @commands.command(name="wiki")
-    async def _wiki(self, ctx, *keywords):
+    async def execute(self, ctx, *keywords):
         try:
-
             term = "".join(keywords)
             url = f"https://www.investopedia.com/terms/{term[0]}/{term}.asp"
             soup = BeautifulSoup(requests.get(url).text,

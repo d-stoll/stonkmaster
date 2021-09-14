@@ -1,4 +1,3 @@
-import configparser
 import datetime as dt
 import logging
 import os
@@ -10,20 +9,15 @@ import plotly.io as pio
 import yfinance as yf
 from discord.ext import commands
 
+from stonkmaster.commands.base import BaseCommand
 from stonkmaster.core.market import daily, intraday
 
 pio.templates.default = 'plotly_dark'
 
 
-class ChartCommand(commands.Cog,
-                   name="Chart",
-                   description="Generates a chart showing the price development of the share in the last months."):
-    def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
-        self.bot = bot
-        self.config = config
+class ChartCommand(BaseCommand):
 
-    @commands.command(name="chart")
-    async def _chart(self, ctx: commands.Context, ticker: str, range: str = "1d"):
+    async def execute(self, ctx: commands.Context, ticker: str, range: str = "1d"):
         try:
             days_pattern = re.compile("[0-9]+d")
             months_pattern = re.compile("[0-9]+m")

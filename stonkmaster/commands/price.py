@@ -1,21 +1,14 @@
-import configparser
 import logging
 
 import yfinance as yf
-from discord.ext import commands
 
+from stonkmaster.commands.base import BaseCommand
 from stonkmaster.core.market import is_market_closed
 
 
-class PriceCommand(commands.Cog,
-                   name="Price",
-                   description="Shows the current price of the stonk, as well as its daily change."):
-    def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
-        self.bot = bot
-        self.config = config
+class PriceCommand(BaseCommand):
 
-    @commands.command(name="price")
-    async def _price(self, ctx, ticker):
+    async def execute(self, ctx, ticker):
         try:
             yf_ticker = yf.Ticker(ticker)
             info = yf_ticker.info

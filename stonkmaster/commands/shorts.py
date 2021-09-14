@@ -1,19 +1,13 @@
-import configparser
 import logging
 
 import yfinance as yf
-from discord.ext import commands
+
+from stonkmaster.commands.base import BaseCommand
 
 
-class ShortsCommand(commands.Cog,
-                    name="Shorts",
-                    description="Provides currently known information on how heavily the stonk is shorted."):
-    def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
-        self.bot = bot
-        self.config = config
+class ShortsCommand(BaseCommand):
 
-    @commands.command(name="shorts")
-    async def _shorts(self, ctx, ticker):
+    async def execute(self, ctx, ticker):
         try:
             yf_ticker = yf.Ticker(ticker)
             info = yf_ticker.info

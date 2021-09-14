@@ -1,4 +1,3 @@
-import configparser
 import logging
 
 import discord
@@ -6,14 +5,12 @@ import yfinance as yf
 from discord.ext import commands
 from secedgar import filings, FilingType
 
+from stonkmaster.commands.base import BaseCommand
 
-class SecCommand(commands.Cog, name="SEC", description="Fetches the latest SEC company filings from EDGAR."):
-    def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
-        self.bot = bot
-        self.config = config
 
-    @commands.command(name="sec")
-    async def _sec(self, ctx: commands.Context, ticker: str, type: str):
+class SecCommand(BaseCommand):
+
+    async def execute(self, ctx: commands.Context, ticker: str, type: str):
         try:
             yf_ticker = yf.Ticker(ticker)
             type = type.upper()
