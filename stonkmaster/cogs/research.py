@@ -8,7 +8,7 @@ from stonkmaster.commands.shorts import ShortsCommand
 from stonkmaster.commands.wiki import WikiCommand
 
 
-class FundamentalsCog(BaseCog, name="Fundamentals"):
+class ResearchCog(BaseCog, name="Research Commands"):
 
     def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
         super().__init__(bot, config)

@@ -9,7 +9,7 @@ from stonkmaster.commands.watch import WatchCommand
 from stonkmaster.tasks.update_status import UpdateStatusTask
 
 
-class TechnicalsCog(BaseCog, name="Technicals"):
+class PriceChartCog(BaseCog, name="Price & Chart Commands"):
 
     def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
         super().__init__(bot, config)

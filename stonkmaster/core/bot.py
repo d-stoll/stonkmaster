@@ -2,8 +2,8 @@ import configparser
 
 from discord.ext import commands
 
-from stonkmaster.cogs.fundamentals import FundamentalsCog
-from stonkmaster.cogs.technicals import TechnicalsCog
+from stonkmaster.cogs.price_chart import PriceChartCog
+from stonkmaster.cogs.research import ResearchCog
 
 
 def create_bot(config: configparser.ConfigParser, intents=None, loop=None):
@@ -15,7 +15,7 @@ def create_bot(config: configparser.ConfigParser, intents=None, loop=None):
                        intents=intents,
                        loop=loop)
 
-    bot.add_cog(FundamentalsCog(bot, config))
-    bot.add_cog(TechnicalsCog(bot, config))
+    bot.add_cog(PriceChartCog(bot, config))
+    bot.add_cog(ResearchCog(bot, config))
 
     return bot
