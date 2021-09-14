@@ -1,17 +1,14 @@
 import logging
 
-import yfinance as yf
-
 from stonkmaster.commands.base import BaseCommand
-from stonkmaster.core.market import is_market_closed
+from stonkmaster.core.market import is_market_closed, get_info
 
 
 class PriceCommand(BaseCommand):
 
     async def execute(self, ctx, ticker):
         try:
-            yf_ticker = yf.Ticker(ticker)
-            info = yf_ticker.info
+            info = get_info(ticker)
 
             if len(info) <= 1:
                 logging.info(f"{ctx.author.display_name} tried to fetch price for invalid ticker {ticker}")

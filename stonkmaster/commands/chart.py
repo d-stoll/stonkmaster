@@ -6,11 +6,10 @@ import re
 import discord
 import plotly.graph_objects as go
 import plotly.io as pio
-import yfinance as yf
 from discord.ext import commands
 
 from stonkmaster.commands.base import BaseCommand
-from stonkmaster.core.market import daily, intraday
+from stonkmaster.core.market import daily, intraday, get_info
 
 pio.templates.default = 'plotly_dark'
 
@@ -41,8 +40,7 @@ class ChartCommand(BaseCommand):
                                "Example: 7d (7 days)")
                 return
 
-            yf_ticker = yf.Ticker(ticker)
-            info = yf_ticker.info
+            info = get_info(ticker)
 
             if len(info) <= 1:
                 logging.info(f"{ctx.author.display_name} tried to generate graph for invalid ticker {ticker}")

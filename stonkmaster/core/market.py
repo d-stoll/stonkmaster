@@ -11,6 +11,10 @@ import yfinance as yf
 alpha_vantage_base_url = "https://www.alphavantage.co/query"
 
 
+def get_info(symbol: str):
+    return yf.Ticker(symbol).info
+
+
 def get_price_and_change(symbol: str):
     yf_ticker = yf.Ticker(symbol)
     info = yf_ticker.info

@@ -1,16 +1,14 @@
 import logging
 
-import yfinance as yf
-
 from stonkmaster.commands.base import BaseCommand
+from stonkmaster.core.market import get_info
 
 
 class ShortsCommand(BaseCommand):
 
     async def execute(self, ctx, ticker):
         try:
-            yf_ticker = yf.Ticker(ticker)
-            info = yf_ticker.info
+            info = get_info(ticker)
 
             if len(info) <= 1:
                 await ctx.send(f"{ticker.upper()} gibt's ned oida! {self.config['emojis']['NotFound']}")
