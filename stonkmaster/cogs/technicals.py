@@ -5,6 +5,7 @@ from discord.ext import commands, tasks
 from stonkmaster.cogs.base import BaseCog
 from stonkmaster.commands.chart import ChartCommand
 from stonkmaster.commands.price import PriceCommand
+from stonkmaster.commands.watch import WatchCommand
 from stonkmaster.tasks.update_status import UpdateStatusTask
 
 
@@ -12,9 +13,11 @@ class TechnicalsCog(BaseCog, name="Technicals"):
 
     def __init__(self, bot: commands.Bot, config: configparser.ConfigParser):
         super().__init__(bot, config)
+        self.update_status_task = UpdateStatusTask(self.bot, self.config)
         self.price_command = PriceCommand(self.config)
         self.chart_command = ChartCommand(self.config)
-        self.update_status_task = UpdateStatusTask(self.bot, self.config)
+        self.watch_command = WatchCommand(self.config, self.update_status_task)
+        self.update_status.start()
 
     @commands.command(name="price",
                       description="Shows the current price of the stonk, as well as its daily change.")
