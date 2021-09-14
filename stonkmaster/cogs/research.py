@@ -29,4 +29,4 @@ class ResearchCog(BaseCog, name="Research Commands"):
     @commands.command(name="wiki")
     async def _wiki(self, ctx: commands.Context, *keywords):
         """Searches investopedia for a definition of the term."""
-        await self.wiki_command.execute(ctx, keywords)
+        await self.wiki_command.execute(ctx, *keywords)

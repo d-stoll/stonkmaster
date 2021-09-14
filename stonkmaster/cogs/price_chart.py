@@ -30,7 +30,7 @@ class PriceChartCog(BaseCog, name="Price & Chart Commands"):
         await self.watch_command.execute(ctx, ticker)
 
     @commands.command(name="chart")
-    async def _chart(self, ctx: commands.Context, ticker: str, range: str):
+    async def _chart(self, ctx: commands.Context, ticker: str, range: str = "1d"):
         """Generates a chart showing the price development of the share in the last months."""
         await self.chart_command.execute(ctx, ticker, range)
 
