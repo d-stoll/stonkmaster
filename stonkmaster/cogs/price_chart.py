@@ -17,6 +17,7 @@ class PriceChartCog(BaseCog, name="Price & Chart Commands"):
         self.price_command = PriceCommand(self.config)
         self.chart_command = ChartCommand(self.config)
         self.watch_command = WatchCommand(self.config, self.update_status_task)
+        self.update_status.add_exception_type(TypeError)
         self.update_status.start()
 
     @commands.command(name="price")
