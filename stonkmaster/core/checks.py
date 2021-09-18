@@ -4,4 +4,10 @@ from discord.ext import commands
 
 
 def alpha_vantage_command():
-    return commands.check(lambda _: os.environ['ALPHA_VANTAGE_TOKEN'] is not None)
+    async def predicate(ctx: commands.Context):
+        if os.environ['ALPHA_VANTAGE_TOKEN'] is None:
+            await ctx.send("**An Alpha Vantage API key must be provided in order to use this command.** :key:")
+            return False
+        return True
+
+    return commands.check(predicate)
