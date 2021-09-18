@@ -6,6 +6,7 @@ from stonkmaster.cogs.base import BaseCog
 from stonkmaster.commands.chart import ChartCommand
 from stonkmaster.commands.price import PriceCommand
 from stonkmaster.commands.watch import WatchCommand
+from stonkmaster.core.checks import alpha_vantage_command
 from stonkmaster.tasks.update_status import UpdateStatusTask
 
 
@@ -31,6 +32,7 @@ class PriceChartCog(BaseCog, name="Price & Chart Commands"):
         await self.watch_command.execute(ctx, ticker)
 
     @commands.command(name="chart")
+    @alpha_vantage_command()
     async def _chart(self, ctx: commands.Context, ticker: str, range: str = "1d"):
         """Generates a chart showing the price development of the share in the last months."""
         await self.chart_command.execute(ctx, ticker, range)
