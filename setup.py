@@ -34,6 +34,9 @@ setup(
 
     packages=find_packages(exclude=['tests', 'tests.*']),
 
+    include_package_data=True,
+    data_files=[("config", ["default.ini"])],
+
     python_requires='>=3.8, <4',
     install_requires=[
         'aiohttp==3.7.4.post0',

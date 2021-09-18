@@ -1,10 +1,13 @@
 import argparse
 import configparser
 
+import pkg_resources
+
 
 def get_config(args: list[str]) -> configparser.ConfigParser:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", help="Path of configuration file.", default="/opt/stonkmaster/default.ini")
+    parser.add_argument("--config", help="Path of configuration file.",
+                        default=pkg_resources.resource_filename("stonkmaster", "config/default.ini"))
     args = parser.parse_args(args)
 
     config = configparser.ConfigParser()
