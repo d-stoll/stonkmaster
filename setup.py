@@ -7,7 +7,7 @@ long_description = (here / 'README.md').read_text(encoding='utf-8')
 
 setup(
     name='stonkmaster',
-    version='1.0.1',
+    version='1.0.1.dev',
     author='Daniel Stoll',
     author_email='danielsimon.stoll2@gmail.com',
     description='Simple bot to monitor stocks, options and cryptos.',
@@ -24,8 +24,8 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3 :: Only",
         "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9"
-        "License :: OSI Approved :: Apache License 2.0",
+        "Programming Language :: Python :: 3.9",
+        "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
     ],
 
@@ -35,7 +35,7 @@ setup(
     packages=find_packages(exclude=['tests', 'tests.*']),
 
     include_package_data=True,
-    data_files=[("config", ["default.ini"])],
+    data_files=[("stonkmaster", ["default.ini"])],
 
     python_requires='>=3.8, <4',
     install_requires=[
