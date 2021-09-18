@@ -35,7 +35,6 @@ setup(
     packages=find_packages(exclude=['tests', 'tests.*']),
 
     include_package_data=True,
-    data_files=[("stonkmaster", ["default.ini"])],
 
     python_requires='>=3.8, <4',
     install_requires=[
