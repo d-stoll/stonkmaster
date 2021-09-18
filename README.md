@@ -42,50 +42,37 @@ The Stonk Master is a Discord bot for fellow apes to monitor stonks without leav
 
 ## Installation
 
-The installation is only tested on Ubuntu 20.04 LTS, however other operating systems should also work without any problem.
+The installation is only tested on Ubuntu 20.04 LTS, however other operating systems should also work without any
+problem.
 
-Make sure Python 3.8 or higher, pip and setuptools are installed on your system.
-
-```{bash}
-$ python -m pip install --upgrade pip setuptools
-```
-
-Now clone the repository.
+Make sure Python 3.8 (or higher) and pip are installed on your system. Then simply run:
 
 ```{bash}
-$ git clone git@github.com:d-stoll/stonkmaster.git
-$ cd stonkmaster
-```
-
-And install all dependencies and the executable.
-
-```{bash}
-$ pip install .
-```
-
-(Optional) You can create your own configuration file to customize emotes and texts.
-
-```{bash}
-$ cp default.ini custom.ini
-$ vim custom.ini
+pip install stonkmaster
 ```
 
 (Optional) Some commands access the alpha vantage API, so they are only usable if an API key is defined. You can claim your free personal api key [here](https://www.alphavantage.co/support/#api-key). It takes only a minute and there are no payment methods required.
 
 ```{bash}
-$ export ALPHA_VANTAGE_TOKEN=<YOUR_PERSONAL_ALPHA_VANTAGE_KEY>
+export ALPHA_VANTAGE_TOKEN=<YOUR_PERSONAL_ALPHA_VANTAGE_KEY>
 ```
 
-To run the bot, obtain you personal discord token and run the stonkmaster executable (with your own configuration if you created one).
+It is necessary to obtain your personal discord token and define it as an environment variable before starting the bot.
 
 ```{bash}
-$ export DISCORD_TOKEN=<YOUR_PERSONAL_DISCORD_TOKEN>
-$ stonkmaster --config custom.ini
+export DISCORD_TOKEN=<YOUR_PERSONAL_DISCORD_TOKEN>
+```
+
+To start the bot, simply run the stonkmaster executable:
+
+```{bash}
+stonkmaster
 ```
 
 ## Features
 
-The main functionality of the bot is to query data from financial APIs and make it quickly accessible to users via a simple interface. For this purpose, we have developed a collection of commands that you can use.
+The main functionality of the bot is to query data from financial APIs and make it quickly accessible to users via a
+simple interface. For this purpose, we have developed a collection of commands that you can use.
 
 ### Commands
 
@@ -103,16 +90,35 @@ In future releases we also plan to implement the following commands:
 
 - `$options [ticker]` -> Displays options and their greeks of a specified ticker.
 - `$config [key] [value]` -> Changes the configuration of the bot (for example the emotes).
-- `$watchlist [ticker]` -> Adds a ticker to your personal watchlist. The bot will inform you about movements in your stocks.
+- `$watchlist [ticker]` -> Adds a ticker to your personal watchlist. The bot will inform you about movements in your
+  stocks.
 - `$ipos` -> Shows all IPOs that are likely to take place in the next 2 weeks.
 - `$earnings` -> Shows all company earnings expected in the next 2 weeks.
 - `$fundamentals [ticker]` -> Displays the fundamental data points of a company.
 
-The list of commands is continuously being expanded. If you find bugs or want to suggest improvements, do not hesitate to make a pull request.
+The list of commands is continuously being expanded. If you find bugs or want to suggest improvements, do not hesitate
+to make a pull request.
 
 ## Configuration
 
-tbd.
+You can create your own configuration file to customize emotes and texts. First copy the default configuration
+from `default.ini`
+
+```{bash}
+cp default.ini custom.ini
+```
+
+Now change all configurations to git your own setup:
+
+```{bash}
+vim custom.ini
+```
+
+Finally, run the bot with your personal configuration:
+
+```{bash}
+stonkmaster --config custom.ini
+```
 
 ## License
 
@@ -120,4 +126,6 @@ Licensed under the Apache License, Version 2.0 (the "License"); You may obtain a
 
 http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "
+AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific
+language governing permissions and limitations under the License.
