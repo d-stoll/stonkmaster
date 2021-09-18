@@ -7,7 +7,7 @@ long_description = (here / 'README.md').read_text(encoding='utf-8')
 
 setup(
     name='stonkmaster',
-    version='1.0.1.dev',
+    version='1.0.1',
     author='Daniel Stoll',
     author_email='danielsimon.stoll2@gmail.com',
     description='Simple bot to monitor stocks, options and cryptos.',

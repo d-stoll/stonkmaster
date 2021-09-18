@@ -3,7 +3,6 @@ import tempfile
 
 import discord.ext.test as dpytest
 import pytest
-
 from discord import Intents
 
 from stonkmaster.core.bot import create_bot
@@ -13,7 +12,7 @@ from stonkmaster.core.setup import create_data_dir, delete_data_dir
 
 @pytest.fixture
 def config():
-    conf = get_config(["--config", "default.ini"])
+    conf = get_config([])
     tmp_dir = tempfile.mkdtemp()
     conf['stonkmaster']['TmpFolder'] = tmp_dir
     return conf

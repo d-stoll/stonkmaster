@@ -102,10 +102,10 @@ to make a pull request.
 ## Configuration
 
 You can create your own configuration file to customize emotes and texts. First copy the default configuration
-from `default.ini`
+from `config/default.ini` into a custom configuration file:
 
 ```{bash}
-cp default.ini custom.ini
+wget -O custom.ini https://raw.githubusercontent.com/d-stoll/stonkmaster/master/stonkmaster/config/default.ini
 ```
 
 Now change all configurations to git your own setup:
