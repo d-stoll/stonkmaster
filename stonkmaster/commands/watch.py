@@ -27,7 +27,7 @@ class WatchCommand(BaseCommand):
                 msg = f"Alright, i'm watching **{info['symbol']}** now. {self.config['emojis']['Eyes']}"
 
             logging.info(f"{ctx.author.display_name} set watched ticker to {info['symbol']}")
-            self.current_ticker = info['symbol']
+            self.update_status_task.current_ticker = info['symbol']
             await self.update_status_task.loop()
             await ctx.send(msg)
 
