@@ -49,6 +49,7 @@ setup(
     ],
 
     setup_requires=[
+        'wheel',
         'pytest-runner>=5.3.1',
         'flake8>=3.9.2'
     ],
