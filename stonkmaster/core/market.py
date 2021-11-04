@@ -19,8 +19,8 @@ def get_price_and_change(symbol: str):
     yf_ticker = yf.Ticker(symbol)
     info = yf_ticker.info
 
-    current = info['regularMarketPrice']
-    previous = info['previousClose']
+    current = info.get('regularMarketPrice')
+    previous = info.get('previousClose', current)
     change = ((current - previous) / previous) * 100
 
     return current, change
