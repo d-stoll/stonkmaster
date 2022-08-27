@@ -18,7 +18,7 @@ async def test_price_gme(bot):
         assert discord_message_equals("Market is currently **closed** :lock:")
     else:
         assert discord_message_equals("Wennst ned woasd, wannst GME vakaffa wuisd, kosd de do orientiern: " +
-                                        "<https://gmefloor.com/> :moneybag:")
+                                      "<https://gmefloor.com/> :moneybag:")
         assert discord_message_equals("Weitere Infos findst do: <https://gme.crazyawesomecompany.com/> :bulb:")
 
 

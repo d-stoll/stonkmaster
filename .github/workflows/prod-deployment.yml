@@ -1,0 +1,25 @@
+name: prod-deployment
+
+on:
+  workflow_run:
+    workflows: ["build"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pull master & Restart systemd service on production environment
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd /opt/stonkmaster
+            git pull
+            poetry build
+            pip install dist/stonkmaster-1.0.2.tar.gz
+            sudo /bin/systemctl restart stonkmaster

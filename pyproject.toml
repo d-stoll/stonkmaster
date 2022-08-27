@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "stonkmaster"
+version = "1.0.2"
+description = "Simple bot to monitor stocks, options and cryptos."
+readme = "README.md"
+authors = ["d-stoll <daniel.stoll@tum.de>"]
+license = "Apache License 2.0"
+repository = "https://github.com/d-stoll/stonkmaster"
+keywords = [
+    "discord",
+    "discord-bot",
+    "stocks"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+include = ["stonkmaster/config/default.ini"]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/d-stoll/stonkmaster/issues"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+yfinance = "^0.1.70"
+"discord.py" = "^1.7.3"
+holidays = "^0.14.2"
+plotly = "^5.8.2"
+pandas = "^1.4.2"
+secedgar = "^0.4.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+dpytest = "^0.5.3"
+flake8 = "^4.0.1"
+
+[tool.poetry.scripts]
+stonkmaster = "stonkmaster.main:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
