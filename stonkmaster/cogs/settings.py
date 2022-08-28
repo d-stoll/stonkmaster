@@ -13,6 +13,6 @@ class SettingsCog(BaseCog, name="Setting Commands"):
         self.config_command = ConfigCommand(self.config)
 
     @commands.command(name="config")
-    async def _config(self, ctx: commands.Context, *args: str):
+    async def _config(self, ctx: commands.Context, *args):
         """Manage internal configurations of the bot."""
         await self.config_command.execute(ctx, *args)

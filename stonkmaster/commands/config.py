@@ -6,7 +6,7 @@ from stonkmaster.commands.base import BaseCommand
 
 
 class ConfigCommand(BaseCommand):
-    async def execute(self, ctx: commands.Context, *args: str):
+    async def execute(self, ctx: commands.Context, *args):
         try:
             if args[0] == "set":
                 assert len(args) == 3
