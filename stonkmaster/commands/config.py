@@ -6,10 +6,12 @@ from stonkmaster.commands.base import BaseCommand
 
 
 class ConfigCommand(BaseCommand):
-    async def execute(self, ctx: commands.Context, cmd: str, *args: str):
+    async def execute(self, ctx: commands.Context, *args: str):
         try:
-            if cmd == "set":
-                key, value = args
+            if args[0] == "set":
+                assert len(args) == 3
+
+                key, value = args[1:]
                 section, option = ".".split(key)
                 if section == "discord.py":
                     await ctx.send(f"Discord.py configurations can not be changed at runtime. "
