@@ -1,6 +1,7 @@
 import logging
 
 from stonkmaster.commands.base import BaseCommand
+from stonkmaster.core.language import get_text
 from stonkmaster.core.market import get_info
 
 
@@ -11,13 +12,15 @@ class ShortsCommand(BaseCommand):
             info = get_info(ticker)
 
             if len(info) <= 1:
-                await ctx.send(f"{ticker.upper()} gibt's ned oida! {self.config['emojis']['NotFound']}")
+                logging.info(f"{ctx.author.display_name} tried to fetch short-sale data for invalid ticker {ticker}")
+                await ctx.send(get_text("TickerNotFound", self.config).format(ticker.upper(),
+                                                                              self.config['emojis']['NotFound']))
                 return
 
             symbol = info['symbol']
 
             if 'sharesShort' not in info or 'shortPercentOfFloat' not in info:
-                await ctx.send(f"{symbol} ko ned geshorted werdn, du Hosnbiesla! {self.config['emojis']['NoShort']}")
+                await ctx.send(get_text("ShortNotFound", self.config).format(symbol, self.config['emojis']['NoShort']))
                 return
 
             shares_short = info['sharesShort']
@@ -40,4 +43,4 @@ class ShortsCommand(BaseCommand):
 
         except Exception as ex:
             logging.exception(f"Exception in ShortsCommand: {ex}")
-            await ctx.send(f"Do hod wos ned bassd, I bin raus. {self.config['emojis']['Error']}")
+            await ctx.send(get_text("ErrorMsg", self.config).format(self.config['emojis']['Error']))

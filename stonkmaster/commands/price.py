@@ -1,6 +1,7 @@
 import logging
 
 from stonkmaster.commands.base import BaseCommand
+from stonkmaster.core.language import get_text
 from stonkmaster.core.market import is_market_closed, get_info
 
 
@@ -12,7 +13,8 @@ class PriceCommand(BaseCommand):
 
             if len(info) <= 1:
                 logging.info(f"{ctx.author.display_name} tried to fetch price for invalid ticker {ticker}")
-                await ctx.send(f"{ticker.upper()} gibt's ned oida! {self.config['emojis']['NotFound']}")
+                await ctx.send(get_text("TickerNotFound", self.config).format(ticker.upper(),
+                                                                              self.config['emojis']['NotFound']))
                 return
 
             current = info['regularMarketPrice']
@@ -42,4 +44,4 @@ class PriceCommand(BaseCommand):
 
         except Exception as ex:
             logging.exception(f"Exception in PriceCommand: {ex}")
-            await ctx.send(f"Do hod wos ned bassd, I bin raus. {self.config['emojis']['Error']}")
+            await ctx.send(get_text("ErrorMsg", self.config).format(self.config['emojis']['Error']))

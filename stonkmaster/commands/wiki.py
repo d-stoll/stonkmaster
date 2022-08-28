@@ -5,6 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from stonkmaster.commands.base import BaseCommand
+from stonkmaster.core.language import get_text
 
 
 class WikiCommand(BaseCommand):
@@ -30,9 +31,7 @@ class WikiCommand(BaseCommand):
                                  "html.parser")
             title = soup.find("h3", id="search-results__title_1-0")
             if title is None:
-                await ctx.send(
-                    f"Check no amoi dein Suchterm ob oder schau selber noch du faule Sau: "
-                    f"<https://www.investopedia.com/> {self.config['emojis']['NotFound']}")
+                await ctx.send(get_text("SearchTermNotFound", self.config).format(self.config['emojis']['NotFound']))
                 return
 
             url = soup.find("div", id="search-results__url_1-0").text.strip()
@@ -48,4 +47,4 @@ class WikiCommand(BaseCommand):
 
         except Exception as ex:
             logging.exception(f"Exception in WikiCommand: {ex}")
-            await ctx.send(f"Do hod wos ned bassd, I bin raus. {self.config['emojis']['Error']}")
+            await ctx.send(get_text("ErrorMsg", self.config).format(self.config['emojis']['Error']))

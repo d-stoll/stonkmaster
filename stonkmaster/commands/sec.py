@@ -5,6 +5,7 @@ from discord.ext import commands
 from secedgar import filings, FilingType
 
 from stonkmaster.commands.base import BaseCommand
+from stonkmaster.core.language import get_text
 from stonkmaster.core.market import get_info
 
 
@@ -42,4 +43,4 @@ class SecCommand(BaseCommand):
 
         except Exception as ex:
             logging.exception(f"Exception in SecCommand: {ex}")
-            await ctx.send(f"Do hod wos ned bassd, I bin raus. {self.config['emojis']['Error']}")
+            await ctx.send(get_text("ErrorMsg", self.config).format(self.config['emojis']['Error']))
