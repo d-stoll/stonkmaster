@@ -12,7 +12,7 @@ class ConfigCommand(BaseCommand):
                 assert len(args) == 3
 
                 _, key, value = args
-                section, option = ".".split(key)
+                section, option = key.split(".")
                 if section == "discord.py":
                     await ctx.send(f"Discord.py configurations can not be changed at runtime. "
                                    f"{self.config['emojis']['Error']}")
