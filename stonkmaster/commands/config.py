@@ -11,7 +11,7 @@ class ConfigCommand(BaseCommand):
             if args[0] == "set":
                 assert len(args) == 3
 
-                key, value = args[1:]
+                _, key, value = args
                 section, option = ".".split(key)
                 if section == "discord.py":
                     await ctx.send(f"Discord.py configurations can not be changed at runtime. "
