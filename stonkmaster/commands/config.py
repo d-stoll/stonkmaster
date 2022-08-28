@@ -18,7 +18,7 @@ class ConfigCommand(BaseCommand):
                                    f"{self.config['emojis']['Error']}")
                 else:
                     self.config.set(section, option, value)
-                    await ctx.send(f"**Setting {key} to {value}** {self.config['emojis']['Tools']}")
+                    await ctx.send(f"Setting **{key}** to **{value}**  {self.config['emojis']['Tools']}")
         except Exception as ex:
             logging.exception(f"Exception in ConfigCommand: {ex}")
             await ctx.send(f"Error during execution of command. {self.config['emojis']['Error']}")
