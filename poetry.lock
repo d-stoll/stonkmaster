@@ -163,7 +163,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "holidays"
-version = "0.15"
+version = "0.16"
 description = "Generate and work with holidays in Python"
 category = "main"
 optional = false
@@ -210,7 +210,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, != 3.4.*"
 [package.extras]
 cssselect = ["cssselect (>=0.7)"]
 html5 = ["html5lib"]
-htmlsoup = ["beautifulsoup4"]
+htmlsoup = ["BeautifulSoup4"]
 source = ["Cython (>=0.29.7)"]
 
 [[package]]
@@ -433,7 +433,7 @@ tqdm = "*"
 urllib3 = "*"
 
 [package.extras]
-cli = ["aiohttp", "async-timeout (>=3.0,<4.0)", "beautifulsoup4", "click", "lxml", "requests", "tqdm", "urllib3"]
+cli = ["Click", "aiohttp", "async-timeout (>=3.0,<4.0)", "beautifulsoup4", "lxml", "requests", "tqdm", "urllib3"]
 
 [[package]]
 name = "six"
@@ -538,7 +538,7 @@ requests = ">=2.26"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "6e94ee8851fa6637238465dd439dbbc7a09360c3c47def8923350122dc6ce385"
+content-hash = "efb9a64352182699f0b03fe414b61f55e33c5393cdcceba53662ea48e4c52662"
 
 [metadata.files]
 aiohttp = [
@@ -632,8 +632,8 @@ hijri-converter = [
     {file = "hijri_converter-2.2.4-py3-none-any.whl", hash = "sha256:5ed4f4c284626e3916cd770e09346d5cc319e2a7762c22357838864908fd6e6d"},
 ]
 holidays = [
-    {file = "holidays-0.15-py3-none-any.whl", hash = "sha256:489a4cdf063dad4663944bd0e899db42845a0f7d81fe292ac28e92324bd115c0"},
-    {file = "holidays-0.15.tar.gz", hash = "sha256:bdf46c8ae2ef18ef5b3a80e0a18f8e2d5c43c34756eac8930c628dc48d51de0e"},
+    {file = "holidays-0.16-py3-none-any.whl", hash = "sha256:dd581b8a3fe0642bd8d0c8e9181df933c62c200bbf38ba31aae7f7fb4f3f9d7a"},
+    {file = "holidays-0.16.tar.gz", hash = "sha256:1d7f4fd6b1980298fbbb3316b0d57fa6f15b5313074cdacc12a3ab93bf3ca5cd"},
 ]
 idna = [
     {file = "idna-3.3-py3-none-any.whl", hash = "sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff"},
@@ -894,7 +894,6 @@ requests = [
 ]
 secedgar = [
     {file = "secedgar-0.4.0-py3-none-any.whl", hash = "sha256:176e1d5f60cd9cc14c14aabc668991f89cfc2e10525e193617170bfe3c40756f"},
-    {file = "secedgar-0.4.0-py3.10.egg", hash = "sha256:11d89e939fce2e1ee87a73323466463093d0870409b444e823a017a1c667fcda"},
     {file = "secedgar-0.4.0.tar.gz", hash = "sha256:ce09bdfd4f93f97cced1b9773e01b21864f54a7abccc0787942038cdb9ad8e95"},
 ]
 six = [
