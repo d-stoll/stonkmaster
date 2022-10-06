@@ -29,7 +29,7 @@ include = ["stonkmaster/config/default.ini"]
 [tool.poetry.dependencies]
 python = "^3.9"
 yfinance = "^0.1.70"
-"discord.py" = "^1.7.3"
+"discord.py" = ">=1.7.3,<3.0.0"
 holidays = ">=0.14.2,<0.17.0"
 plotly = "^5.8.2"
 pandas = "^1.4.2"
