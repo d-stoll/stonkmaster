@@ -1,6 +1,5 @@
 import pytest
 
-from stonkmaster.commands.price import PriceCommand
 from stonkmaster.core.market import is_market_closed
 
 
