@@ -123,18 +123,6 @@ test = ["coverage[toml]", "pytest", "pytest-asyncio", "pytest-cov", "pytest-mock
 voice = ["PyNaCl (>=1.3.0,<1.6)"]
 
 [[package]]
-name = "dpytest"
-version = "0.5.3"
-description = "A package that assists in writing tests for discord.py"
-category = "dev"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-"discord.py" = "*"
-pytest-asyncio = "*"
-
-[[package]]
 name = "exceptiongroup"
 version = "1.0.0"
 description = "Backport of PEP 654 (exception groups)"
@@ -361,20 +349,6 @@ tomli = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.7.2)", "requests", "xmlschema"]
 
 [[package]]
-name = "pytest-asyncio"
-version = "0.19.0"
-description = "Pytest support for asyncio"
-category = "dev"
-optional = false
-python-versions = ">=3.7"
-
-[package.dependencies]
-pytest = ">=6.1.0"
-
-[package.extras]
-testing = ["coverage (>=6.2)", "flaky (>=3.5.0)", "hypothesis (>=5.7.1)", "mypy (>=0.931)", "pytest-trio (>=0.7.0)"]
-
-[[package]]
 name = "python-dateutil"
 version = "2.8.2"
 description = "Extensions to the standard Python datetime module"
@@ -534,7 +508,7 @@ requests = ">=2.26"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "53046b1a814f8e945cf8f4fc3f6eb8a30f54b4b223ef4df7e91ac4c0f52b584a"
+content-hash = "80e9ca4c688971d12237b87aee60a3aeab164ce63c99561a290a69a8dcd73cbe"
 
 [metadata.files]
 aiohttp = [
@@ -611,10 +585,6 @@ convertdate = [
 "discord.py" = [
     {file = "discord.py-2.0.1-py3-none-any.whl", hash = "sha256:aeb186348bf011708b085b2715cf92bbb72c692eb4f59c4c0b488130cc4c4b7e"},
     {file = "discord.py-2.0.1.tar.gz", hash = "sha256:309146476e986cb8faf038cd5d604d4b3834ef15c2d34df697ce5064bf5cd779"},
-]
-dpytest = [
-    {file = "dpytest-0.5.3-py3-none-any.whl", hash = "sha256:d991909aca44ac095157ddca4e7f68e928e277d19bdc2a9d2908d3346b5ca309"},
-    {file = "dpytest-0.5.3.tar.gz", hash = "sha256:cfd8afb929bf006972c4bd9c13b36f9dee19a057d4c408b4b6b31acfea340ff4"},
 ]
 exceptiongroup = [
     {file = "exceptiongroup-1.0.0-py3-none-any.whl", hash = "sha256:2ac84b496be68464a2da60da518af3785fff8b7ec0d090a581604bc870bdee41"},
@@ -868,10 +838,6 @@ pyparsing = [
 pytest = [
     {file = "pytest-7.2.0-py3-none-any.whl", hash = "sha256:892f933d339f068883b6fd5a459f03d85bfcb355e4981e146d2c7616c21fef71"},
     {file = "pytest-7.2.0.tar.gz", hash = "sha256:c4014eb40e10f11f355ad4e3c2fb2c6c6d1919c73f3b5a433de4708202cade59"},
-]
-pytest-asyncio = [
-    {file = "pytest-asyncio-0.19.0.tar.gz", hash = "sha256:ac4ebf3b6207259750bc32f4c1d8fcd7e79739edbc67ad0c58dd150b1d072fed"},
-    {file = "pytest_asyncio-0.19.0-py3-none-any.whl", hash = "sha256:7a97e37cfe1ed296e2e84941384bdd37c376453912d397ed39293e0916f521fa"},
 ]
 python-dateutil = [
     {file = "python-dateutil-2.8.2.tar.gz", hash = "sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86"},

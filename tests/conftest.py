@@ -1,7 +1,6 @@
 import shutil
 import tempfile
 
-import discord.ext.test as dpytest
 import pytest
 from discord import Intents
 
@@ -19,11 +18,10 @@ def config():
 
 
 @pytest.fixture
-def bot(config, event_loop):
+def bot(config):
     delete_data_dir(config)
     create_data_dir(config)
-    bot = create_bot(config, intents=Intents(members=True), loop=event_loop)
-    dpytest.configure(bot)
+    bot = create_bot(config, intents=Intents(members=True))
     return bot
 
 
