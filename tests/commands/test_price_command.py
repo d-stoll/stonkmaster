@@ -6,12 +6,12 @@ from stonkmaster.core.market import is_market_closed
 
 @pytest.mark.skip("dpytest is broken")
 def test_price_gme(context, config):
-    cmd = PriceCommand(config)
+    # cmd = PriceCommand(config)
     # await cmd.execute(context, "GME")
 
-    matching_regex = ("The market price of \\*\\*GameStop Corp\\. \\(GME\\)\\*\\* is \\*\\*\\d+(\\.\\d{1,2})?"
-                      "\\$\\*\\* \\((\\+|\\-)\\d+\\.\\d{1,2}\\%\\).*"
-                      )
+    # matching_regex = ("The market price of \\*\\*GameStop Corp\\. \\(GME\\)\\*\\* is \\*\\*\\d+(\\.\\d{1,2})?"
+    #                  "\\$\\*\\* \\((\\+|\\-)\\d+\\.\\d{1,2}\\%\\).*"
+    #                  )
     # assert discord_message_matches(matching_regex)
 
     if is_market_closed():
@@ -26,12 +26,12 @@ def test_price_gme(context, config):
 
 @pytest.mark.skip("dpytest is broken")
 def test_price_amc(context, config):
-    cmd = PriceCommand(config)
+    # cmd = PriceCommand(config)
     # await cmd.execute(context, "AMC")
 
-    matching_regex = ("The market price of \\*\\*AMC Entertainment Holdings, Inc\\. \\(AMC\\)\\*\\* is \\*\\*"
-                      "\\d+(\\.\\d{1,2})?\\$\\*\\* \\((\\+|\\-)\\d+\\.\\d{1,2}\\%\\).*"
-                      )
+    # matching_regex = ("The market price of \\*\\*AMC Entertainment Holdings, Inc\\. \\(AMC\\)\\*\\* is \\*\\*"
+    #                  "\\d+(\\.\\d{1,2})?\\$\\*\\* \\((\\+|\\-)\\d+\\.\\d{1,2}\\%\\).*"
+    #                  )
     # assert discord_message_matches(matching_regex)
 
     if is_market_closed():
