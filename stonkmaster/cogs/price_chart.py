@@ -37,7 +37,7 @@ class PriceChartCog(BaseCog, name="Price & Chart Commands"):
         """Generates a chart showing the price development of the share in the last months."""
         await self.chart_command.execute(ctx, ticker, range)
 
-    @tasks.loop(seconds=20.0)
+    @tasks.loop(seconds=300.0)
     async def update_status(self):
         await self.update_status_task.loop()
 
