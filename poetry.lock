@@ -164,7 +164,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "holidays"
-version = "0.16"
+version = "0.17.2"
 description = "Generate and work with holidays in Python"
 category = "main"
 optional = false
@@ -515,7 +515,7 @@ requests = ">=2.26"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "80e9ca4c688971d12237b87aee60a3aeab164ce63c99561a290a69a8dcd73cbe"
+content-hash = "0e85758eef2d6351f7b78c0d3e65f78782bfd615726fc51500ee1eb3f884d369"
 
 [metadata.files]
 aiohttp = [
@@ -610,8 +610,8 @@ hijri-converter = [
     {file = "hijri_converter-2.2.4-py3-none-any.whl", hash = "sha256:5ed4f4c284626e3916cd770e09346d5cc319e2a7762c22357838864908fd6e6d"},
 ]
 holidays = [
-    {file = "holidays-0.16-py3-none-any.whl", hash = "sha256:dd581b8a3fe0642bd8d0c8e9181df933c62c200bbf38ba31aae7f7fb4f3f9d7a"},
-    {file = "holidays-0.16.tar.gz", hash = "sha256:1d7f4fd6b1980298fbbb3316b0d57fa6f15b5313074cdacc12a3ab93bf3ca5cd"},
+    {file = "holidays-0.17.2-py3-none-any.whl", hash = "sha256:43d3e1bb14f430be66c15bc56f59c922e448f4b52ec31fdc6e26102758e8c3db"},
+    {file = "holidays-0.17.2.tar.gz", hash = "sha256:11604535f66ad9d8f84e51c17102960e87fc3819f84444af68b1eb8756866630"},
 ]
 idna = [
     {file = "idna-3.3-py3-none-any.whl", hash = "sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff"},
