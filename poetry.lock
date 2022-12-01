@@ -498,7 +498,7 @@ multidict = ">=4.0"
 
 [[package]]
 name = "yfinance"
-version = "0.1.84"
+version = "0.1.87"
 description = "Download market data from Yahoo! Finance API"
 category = "main"
 optional = false
@@ -962,6 +962,6 @@ yarl = [
     {file = "yarl-1.8.1.tar.gz", hash = "sha256:af887845b8c2e060eb5605ff72b6f2dd2aab7a761379373fd89d314f4752abbf"},
 ]
 yfinance = [
-    {file = "yfinance-0.1.84-py2.py3-none-any.whl", hash = "sha256:9a5ac17e43726f387266aa58a1212f12e2d7264167598bf0d1de3467cd78f1c5"},
-    {file = "yfinance-0.1.84.tar.gz", hash = "sha256:97f2bbbb46880f1b9013f818d3ff10a604b8fc2c34a1c49205425e6ec7306867"},
+    {file = "yfinance-0.1.87-py2.py3-none-any.whl", hash = "sha256:1011dcb9f60a4eaffb87d7b24319acfa1e5f4cd124b412bfa5437d6143ad5170"},
+    {file = "yfinance-0.1.87.tar.gz", hash = "sha256:78eaeff72a2e903cae08a2b45febeac2d0f99556febfae24f702f198bfc34fd4"},
 ]
