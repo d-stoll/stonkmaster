@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Pull master & Restart systemd service on production environment
-        uses: appleboy/ssh-action@v0.1.5
+        uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
