@@ -164,7 +164,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "holidays"
-version = "0.16"
+version = "0.18"
 description = "Generate and work with holidays in Python"
 category = "main"
 optional = false
@@ -174,6 +174,7 @@ python-versions = ">=3.7"
 convertdate = ">=2.3.0"
 hijri-converter = "*"
 korean-lunar-calendar = "*"
+PyMeeus = "*"
 python-dateutil = "*"
 
 [[package]]
@@ -515,7 +516,7 @@ requests = ">=2.26"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "80e9ca4c688971d12237b87aee60a3aeab164ce63c99561a290a69a8dcd73cbe"
+content-hash = "0ba26b976cd4d12a7644f6ed146fb3718d1fc660856579044048fa914457d744"
 
 [metadata.files]
 aiohttp = [
@@ -610,8 +611,8 @@ hijri-converter = [
     {file = "hijri_converter-2.2.4-py3-none-any.whl", hash = "sha256:5ed4f4c284626e3916cd770e09346d5cc319e2a7762c22357838864908fd6e6d"},
 ]
 holidays = [
-    {file = "holidays-0.16-py3-none-any.whl", hash = "sha256:dd581b8a3fe0642bd8d0c8e9181df933c62c200bbf38ba31aae7f7fb4f3f9d7a"},
-    {file = "holidays-0.16.tar.gz", hash = "sha256:1d7f4fd6b1980298fbbb3316b0d57fa6f15b5313074cdacc12a3ab93bf3ca5cd"},
+    {file = "holidays-0.18-py3-none-any.whl", hash = "sha256:4a6aa0aee7a95da745a194d99eeba24057adf7fb1e756034e4d276ebafa45a8d"},
+    {file = "holidays-0.18.tar.gz", hash = "sha256:e94d9d3536ff1a2a70d6d2f56cb055eb9a95d0b9a3a5fb81b9e8f9d36e333789"},
 ]
 idna = [
     {file = "idna-3.3-py3-none-any.whl", hash = "sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff"},
