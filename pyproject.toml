@@ -33,7 +33,7 @@ yfinance = ">=0.1.70,<0.3.0"
 holidays = ">=0.14.2,<0.19.0"
 plotly = "^5.8.2"
 pandas = "^1.4.2"
-secedgar = "^0.4.0"
+secedgar = ">=0.4,<0.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.2.0"
